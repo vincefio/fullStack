@@ -34,7 +34,7 @@ app.use(passport.session());
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, "/public/home.html")))
 
 app.post('/subscribe', (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     User.create(req.body, function (err) {
         if (err) return err;
     })
@@ -44,26 +44,39 @@ app.post('/subscribe', (req, res) => {
 
 passport.use(new LocalStrategy(
     function (username, password, done) {
-        User.findOne({ username: username }, function (err, user) {
-            if (err) { return done(err); }
+        User.getUserByUsername(username, function (err, user) {
+            if (err) throw err;
             if (!user) {
-                return done(null, false, { message: 'Incorrect username.' });
+                return done(null, false, { message: 'Unknown User' });
             }
-            if (!user.validPassword(password)) {
-                return done(null, false, { message: 'Incorrect password.' });
-            }
-            return done(null, user);
-        });
+
+            User.findOne({ username: username }, function (err, user) {
+                if (err) throw err;
+                if (!user.validPassword(password)) {
+                    return done(null, false, { message: 'Incorrect Password' })
+                }
+                return done(null, user)
+            })
+
+            /*User.comparePassword(password, user.password, function (err, isMatch) {
+                if (err) throw err;
+                if (isMatch) {
+                    return done(null, user);
+                } else {
+                    return done(null, false, { message: 'Invalid password' })
+                }
+            })*/
+        })
     }
 ));
 
 app.post('/login',
     passport.authenticate('local', {
         successRedirect: '/',
-        failureRedirect: '/login',
+        failureRedirect: '/users/login',
         failureFlash: true
     },
-        function (rew, res) {
+        function (req, res) {
             res.redirect('/')
         })
 );
