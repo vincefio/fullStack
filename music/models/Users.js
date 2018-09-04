@@ -6,8 +6,15 @@ var userSchema = new Schema({
     password: String
 })
 
-var User = mongoose.model('users', userSchema)
+var User = module.exports = mongoose.model('users', userSchema)
 
 
-module.exports = User;
+module.exports.getUserByUsername = function (username, callback) {
+    var query = { username: username };
+    User.findOne(query, callback)
+}
+
+module.exports.comparePassword = function (candidatePassword, password, callback) {
+
+}
 

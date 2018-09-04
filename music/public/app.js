@@ -8,14 +8,14 @@ $(document).ready(function () {
 
         $.ajax({
             method: 'POST',
-            url: '/subscribe',
+            url: '/register',
             data: {
                 username: username,
                 password: password
             }
         })
             .done(function (data) {
-                console.log('finito')
+                console.log('finito ' + data)
             })
     })
 

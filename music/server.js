@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
+var flash = require('connect-flash')
 var User = require('./models/Users')
 var session = require("express-session")
 const app = express()
@@ -30,16 +31,27 @@ app.use(session({ secret: "cats" }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(flash())
+
+//global vars
+app.use(function (req, res, next) {
+    res.locals.success_msg = req.flash('success_msg')
+    res.locals.error_msg = req.flash('error_msg')
+    res.locals.error = req.flash('error')
+    next()
+})
+
 
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, "/public/home.html")))
 
-app.post('/subscribe', (req, res) => {
-    // console.log(req.body)
-    User.create(req.body, function (err) {
+app.post('/register', (req, res) => {
+    console.log(req.body)
+
+    /*User.create(req.body, function (err) {
         if (err) return err;
     })
 
-    res.end('doneeee')
+    res.end('doneeee')*/
 })
 
 passport.use(new LocalStrategy(
@@ -52,7 +64,7 @@ passport.use(new LocalStrategy(
 
             User.findOne({ username: username }, function (err, user) {
                 if (err) throw err;
-                if (!user.validPassword(password)) {
+                if (user.password != password) {
                     return done(null, false, { message: 'Incorrect Password' })
                 }
                 return done(null, user)
