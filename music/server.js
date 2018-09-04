@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
 var flash = require('connect-flash')
+var expressValidator = require('express-validator')
 var User = require('./models/Users')
 var session = require("express-session")
 const app = express()
@@ -31,6 +32,8 @@ app.use(session({ secret: "cats" }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(expressValidator());
+
 app.use(flash())
 
 //global vars
@@ -45,7 +48,18 @@ app.use(function (req, res, next) {
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, "/public/home.html")))
 
 app.post('/register', (req, res) => {
-    console.log(req.body)
+    //console.log(req.body)
+    var name = req.body.username;
+
+    req.checkBody('username', 'Name is required').notEmpty();
+
+    var errors = req.validationErrors()
+
+    if (errors) {
+        console.log('YES')
+    } else {
+        console.log('NO')
+    }
 
     /*User.create(req.body, function (err) {
         if (err) return err;
