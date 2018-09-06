@@ -1,19 +1,62 @@
-const express = require('express')
-const bodyParser = require('body-parser')
+var express = require('express');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var exphbs = require('express-handlebars');
+var expressValidator = require('express-validator');
+var flash = require('connect-flash');
+var session = require('express-session');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var mongo = require('mongodb');
+
 const path = require('path')
-var flash = require('connect-flash')
-var expressValidator = require('express-validator')
+
+var routes = require('./routes/index')
+var users = require('./routes/users')
+
 var User = require('./models/Users')
-var session = require("express-session")
 const app = express()
 
-app.use(express.static('public'))
+//app.use(express.static('public'))
+// View Engine
+app.set('views', path.join(__dirname, 'views'));
+app.engine('handlebars', exphbs({ defaultLayout: 'layout' }));//layout.handlebars
+app.set('view engine', 'handlebars');
 
-// Sets up the Express app to handle data parsing
+
+// BodyParser Middleware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.text());
-app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+
+
+// Set Static Folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Express Session
+app.use(session({
+    secret: 'secret',
+    saveUninitialized: true,
+    resave: true
+}));
+
+// Express Validator
+app.use(expressValidator({
+    errorFormatter: function (param, msg, value) {
+        var namespace = param.split('.')
+            , root = namespace.shift()
+            , formParam = root;
+
+        while (namespace.length) {
+            formParam += '[' + namespace.shift() + ']';
+        }
+        return {
+            param: formParam,
+            msg: msg,
+            value: value
+        };
+    }
+}));
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true });
@@ -24,16 +67,10 @@ db.once('open', function () {
     console.log('database connected')
 });
 
-var passport = require('passport')
-    , LocalStrategy = require('passport-local').Strategy;
-
-
-app.use(session({ secret: "cats" }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(expressValidator());
-
+// Connect Flash
 app.use(flash())
 
 //global vars
@@ -44,8 +81,11 @@ app.use(function (req, res, next) {
     next()
 })
 
+app.use('/', routes);
+app.use('/users', users);
 
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, "/public/home.html")))
+
+/*app.get('/', (req, res) => res.sendFile(path.join(__dirname, "/public/home.html")))
 
 app.post('/register', (req, res) => {
     //console.log(req.body)
@@ -65,8 +105,8 @@ app.post('/register', (req, res) => {
         if (err) return err;
     })
 
-    res.end('doneeee')*/
-})
+    res.end('doneeee')
+})*/
 
 passport.use(new LocalStrategy(
     function (username, password, done) {
@@ -96,7 +136,7 @@ passport.use(new LocalStrategy(
     }
 ));
 
-app.post('/login',
+/*app.post('/login',
     passport.authenticate('local', {
         successRedirect: '/',
         failureRedirect: '/users/login',
@@ -105,6 +145,6 @@ app.post('/login',
         function (req, res) {
             res.redirect('/')
         })
-);
+);*/
 
 app.listen(8080, () => console.log('Example app listening on port 8080'))
