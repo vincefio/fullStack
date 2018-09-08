@@ -78,66 +78,7 @@ app.use('/', routes);
 app.use('/users', users);
 
 
-/*app.get('/', (req, res) => res.sendFile(path.join(__dirname, "/public/home.html")))
 
-app.post('/register', (req, res) => {
-    //console.log(req.body)
-    var name = req.body.username;
 
-    req.checkBody('username', 'Name is required').notEmpty();
-
-    var errors = req.validationErrors()
-
-    if (errors) {
-        console.log('YES')
-    } else {
-        console.log('NO')
-    }
-
-    /*User.create(req.body, function (err) {
-        if (err) return err;
-    })
-
-    res.end('doneeee')
-})*/
-
-passport.use(new LocalStrategy(
-    function (username, password, done) {
-        User.getUserByUsername(username, function (err, user) {
-            if (err) throw err;
-            if (!user) {
-                return done(null, false, { message: 'Unknown User' });
-            }
-
-            User.findOne({ username: username }, function (err, user) {
-                if (err) throw err;
-                if (user.password != password) {
-                    return done(null, false, { message: 'Incorrect Password' })
-                }
-                return done(null, user)
-            })
-
-            /*User.comparePassword(password, user.password, function (err, isMatch) {
-                if (err) throw err;
-                if (isMatch) {
-                    return done(null, user);
-                } else {
-                    return done(null, false, { message: 'Invalid password' })
-                }
-            })*/
-        })
-    }
-));
-
-/*app.post('/login',
-    passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect: '/users/login',
-        failureFlash: true
-    },
-        function (req, res) {
-            res.redirect('/')
-        })
-);*/
 
 app.listen(8080, () => console.log('Example app listening on port 8080'))
