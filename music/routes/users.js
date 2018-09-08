@@ -11,16 +11,13 @@ router.get('/login', function (req, res) {
     res.render('login');
 });
 
-// Register User
-/*router.post('/register', function (req, res) {
-    var name = req.body.name;
-    var email = req.body.email;
-    var username = req.body.username;
-    var password = req.body.password;
-    var password2 = req.body.password2;
+//Logout
+router.get('/logout', function (req, res) {
+    req.logout();
 
-    console.log(name)
-});*/
+    req.flash('success_msg', 'You are logged out');
 
+    res.redirect('/users/login');
+});
 
 module.exports = router;
