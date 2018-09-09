@@ -7,7 +7,6 @@ router.post('/signup', (req, res) => {
     //const { username, password } = req.body
 
     console.log('signup route hit in auth folder')
-    res.end()
     // ADD VALIDATION
     /*User.findOne({ 'local.username': username }, (err, userMatch) => {
         if (userMatch) {
