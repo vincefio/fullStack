@@ -57,7 +57,7 @@ class App extends Component {
       loggedIn: false,
       user: null
     }
-    //this._logout = this._logout.bind(this)
+    this._logout = this._logout.bind(this)
     this._login = this._login.bind(this)
   }
 
@@ -79,6 +79,20 @@ class App extends Component {
     })
   }
 
+  _logout(event) {
+    event.preventDefault()
+    console.log('logging out')
+    axios.post('/auth/logout').then(response => {
+      console.log(response.data)
+      if (response.status === 200) {
+        this.setState({
+          loggedIn: false,
+          user: null
+        })
+      }
+    })
+  }
+
   _login(username, password) {
     axios
       .post('/auth/login', {
@@ -87,12 +101,12 @@ class App extends Component {
       })
       .then(response => {
 
-        console.log('response ' + JSON.stringify(response.data))
+        console.log('response ' + JSON.stringify(response.data.local.username))
         if (response.status === 200) {
           // update the state
           this.setState({
             loggedIn: true,
-            user: response.data.user
+            user: response.data.local
           })
         }
       })
