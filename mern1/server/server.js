@@ -9,12 +9,13 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb');
 const path = require('path')
+const dbConnection = require('./db') // loads our connection to the mongo database
 
 //Initialize App
 const app = express()
 
 /* Express app ROUTING */
-//app.use('/auth', require('./auth'))
+app.use('/auth', require('./auth'))
 
 // BodyParser Middleware
 app.use(bodyParser.json());
