@@ -29,13 +29,15 @@ app.use(session({
     resave: true
 }));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 /* Express app ROUTING */
 app.use('/auth', require('./auth'))
 const router = express.Router()
 
 
-app.use(passport.initialize());
-app.use(passport.session());
+
 
 
 app.listen(8080, () => console.log('Example app listening on port 8080'))

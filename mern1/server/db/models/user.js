@@ -8,7 +8,7 @@ const userSchema = new Schema({
     firstName: { type: String, unique: false },
     lastName: { type: String, unique: false },
     local: {
-        username: { type: String, required: false },
+        username: { type: String, unique: true, required: false },
         password: { type: String, unique: false, required: false }
     }
 })

@@ -1,7 +1,41 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../db/models/user')
-//const passport = require('../passport')
+const passport = require('../passport')
+
+// this route is just used to get the user basic info
+router.get('/user', (req, res, next) => {
+    console.log('===== user!!======')
+    console.log(req.user)
+    if (req.user) {
+        return res.json({ user: req.user })
+    } else {
+        return res.json({ user: null })
+    }
+})
+
+router.post(
+    '/login', function (req, res, next) {
+        console.log('post hit in auth/index')
+        //console.log(JSON.stringify(req.body))
+        console.log('================')
+        next()
+    },
+    passport.authenticate('local'),
+    (req, res) => {
+        console.log('POST to /login')
+        console.log(req.user)
+        const user = JSON.stringify(req.user)
+        //  const user = JSON.parse(JSON.stringify(req.user)) // hack
+        /*const cleanUser = Object.assign({}, user)
+        if (cleanUser.local) {
+            console.log(`Deleting ${cleanUser.local.password}`)
+            delete cleanUser.local.password
+        }*/
+        // res.json({ user: user })
+        res.json(req.user)
+    }
+)
 
 router.post('/signup', (req, res) => {
     // const { username, password } = req.body
