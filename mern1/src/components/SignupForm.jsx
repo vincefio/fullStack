@@ -29,17 +29,17 @@ export default class SignupForm extends Component {
                 username: this.state.username,
                 password: this.state.password
             })
-        /*.then(response => {
-            console.log(response)
-            if (!response.data.errmsg) {
-                console.log('youre good')
-                this.setState({
-                    redirectTo: '/login'
-                })
-            } else {
-                console.log('duplicate')
-            }
-        })*/
+            .then(response => {
+                console.log('response ' + JSON.stringify(response.data))
+                if (!response.data.errmsg) {
+                    console.log('youre good')
+                    this.setState({
+                        redirectTo: '/login'
+                    })
+                } else {
+                    console.log('duplicate')
+                }
+            })
     }
 
     render() {

@@ -14,9 +14,7 @@ const dbConnection = require('./db') // loads our connection to the mongo databa
 //Initialize App
 const app = express()
 
-/* Express app ROUTING */
-app.use('/auth', require('./auth'))
-const router = express.Router()
+
 
 
 // BodyParser Middleware
@@ -30,6 +28,10 @@ app.use(session({
     saveUninitialized: true,
     resave: true
 }));
+
+/* Express app ROUTING */
+app.use('/auth', require('./auth'))
+const router = express.Router()
 
 
 app.use(passport.initialize());
