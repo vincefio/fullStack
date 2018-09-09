@@ -16,6 +16,8 @@ const app = express()
 
 /* Express app ROUTING */
 app.use('/auth', require('./auth'))
+const router = express.Router()
+
 
 // BodyParser Middleware
 app.use(bodyParser.json());
@@ -34,4 +36,4 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-app.listen(8080, () => console.log('Example app listening on port 8080'))
+app.listen(3000, () => console.log('Example app listening on port 3000'))
