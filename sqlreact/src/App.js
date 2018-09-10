@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Navbar, NavItem, Button, Icon } from 'react-materialize'
 import './App.css';
 import { Route, Link, BrowserRouter } from 'react-router-dom'
+import Home from './components/Home'
+import Login from './components/Login'
+import Signup from './components/Signup'
 
 const DisplayLinks = props => {
   if (props.loggedIn) {
@@ -30,7 +33,7 @@ const DisplayLinks = props => {
             <li><Link to="/login">
               Login
             </Link></li>
-            <li><Link to="/register">
+            <li><Link to="/signup">
               Register
             </Link></li>
 
@@ -58,6 +61,12 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <DisplayLinks loggedIn={this.state.loggedIn} />
+
+          {/*Routes*/}
+          <Route exact path="/" render={() => <Home user={this.state.user} />} />
+          <Route exact path="/login" render={() => <Login _login={this._login} />} />
+          <Route exact path="/signup" component={Signup} />
+
         </div>
       </BrowserRouter>
     );
