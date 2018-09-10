@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import Validator from 'validator'
 
+/*const DisplayErrors = props => {
+    if (props.errors) {
+        return (
+
+        )
+    }
+}
+*/
 export default class Signup extends Component {
     constructor() {
         super()
@@ -8,9 +17,12 @@ export default class Signup extends Component {
             username: '',
             usernameError: '',
             password: '',
-            passwordError: '',
-            confirmPassword: '',
-            confirmPasswordError: ''
+            errors: {
+                passwordError: '',
+                confirmPassword: '',
+                confirmPasswordError: ''
+            }
+
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -23,6 +35,7 @@ export default class Signup extends Component {
     }
 
     validate = () => {
+
         let isError = false
         const errors = {}
 
@@ -31,10 +44,21 @@ export default class Signup extends Component {
             errors.usernameError = 'Username is required'
         }
 
+        if (this.state.password === '') {
+            isError = true
+            errors.passwordError = 'Password field is required'
+        }
+
+        if (this.state.confirmPassword === '') {
+            isError = true
+            errors.confirmPasswordError = 'Confirm password field is required'
+        }
+
         if (isError) {
             this.setState({
                 ...this.state,
-                ...errors
+                errors: { ...errors }
+                //...errors
             })
         }
 
@@ -43,6 +67,8 @@ export default class Signup extends Component {
 
     handleSubmit(event) {
         event.preventDefault()
+
+
 
         const err = this.validate();
         console.log('isError ' + err)
@@ -68,6 +94,7 @@ export default class Signup extends Component {
             <div className="SignupForm container">
                 <h1>Signup form</h1>
                 <form action="">
+
                     <div className="input-field">
                         <label htmlFor="username">Username: </label>
                         <input
@@ -87,15 +114,17 @@ export default class Signup extends Component {
                             onChange={this.handleChange}
                         />
                     </div>
+                    <div className="input-field">
+                        <label htmlFor="confirmPassword">Confirm Password: </label>
+                        <input
+                            type="password"
+                            name="confirmPassword"
+                            value={this.state.confirmPassword}
+                            onChange={this.handleChange}
+                        />
+                    </div>
 
-                    <label htmlFor="confirmPassword">Confirm Password: </label>
-                    <input
-                        type="password"
-                        name="confirmPassword"
-                        value={this.state.confirmPassword}
-                        onChange={this.handleChange}
-                    />
-                    <button type="submit" onClick={this.handleSubmit}>Sign up</button>
+                    <button type="submit" onClick={e => this.handleSubmit(e)}>Sign up</button>
                 </form>
             </div>
         )
