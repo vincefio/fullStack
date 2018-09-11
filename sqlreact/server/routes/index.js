@@ -23,10 +23,12 @@ router.post('/signup', function (req, res) {
         console.log(user)
         if (user.length > 0) {
             console.log('there is a user with this username')
-            res.send('CREATE NEW USER')
+            res.send(isError)
         } else {
             console.log('NO USER FOUND')
-            res.send(isError)
+            console.log('============CREATE USER===========')
+            //isError = false
+            res.send(false)
         }
     });
 })

@@ -97,10 +97,12 @@ export default class Signup extends Component {
                 username: this.state.username,
                 password: this.state.password
             }).then(response => {
-                //console.log('response ' + JSON.stringify(response.data))
+
                 console.log('response ' + JSON.stringify(response.data))
-                if (response.data == true) {
+                if (response.data === true) {
                     const errTwo = this.validate(response.data)
+                } else {
+                    console.log('CREATE THAT DAMN USER YO')
                 }
             })
         }
