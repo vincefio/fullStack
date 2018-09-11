@@ -3,23 +3,23 @@ import axios from 'axios'
 import Validator from 'validator'
 
 /*const DisplayErrors = props => {
-    if (props.errors) {
+    if (this.state.errors) {
         return (
 
         )
     }
-}
-*/
+}*/
+
 export default class Signup extends Component {
     constructor() {
         super()
         this.state = {
             username: '',
-            usernameError: '',
             password: '',
+            confirmPassword: '',
             errors: {
+                usernameError: '',
                 passwordError: '',
-                confirmPassword: '',
                 confirmPasswordError: ''
             }
 
@@ -33,6 +33,8 @@ export default class Signup extends Component {
             [event.target.name]: event.target.value
         })
     }
+
+
 
     validate = () => {
 
@@ -68,33 +70,39 @@ export default class Signup extends Component {
     handleSubmit(event) {
         event.preventDefault()
 
-
-
         const err = this.validate();
-        console.log('isError ' + err)
-        if (!err) {
+
+        //console.log('isError ' + err)
+        if (err) {
             //clear form
             this.setState({
                 username: '',
                 password: '',
                 confirmPassword: ''
             })
+        } else {
+            axios.post('/signup', {
+                username: this.state.username,
+                password: this.state.password
+            }).then(response => {
+                console.log('response ' + JSON.stringify(response.data))
+            })
         }
 
-        axios.post('/signup', {
-            username: this.state.username,
-            password: this.state.password
-        }).then(response => {
-            console.log('response ' + JSON.stringify(response.data))
-        })
     }
 
     render() {
+        let errors = this.state.errors
+
+        const errorOptions = Object.keys(errors).map((key, i) =>
+            <div value={key} key={i}>{errors[key]}</div>
+        )
+
         return (
             <div className="SignupForm container">
                 <h1>Signup form</h1>
                 <form action="">
-
+                    {errorOptions}
                     <div className="input-field">
                         <label htmlFor="username">Username: </label>
                         <input
