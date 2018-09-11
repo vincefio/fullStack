@@ -1,19 +1,50 @@
-const mysql = require('mysql')
+const Sequelize = require('sequelize');
+//const User = require('./models/User')
 
-//MYSQL Connection
-var connection = mysql.createConnection({
+const sequelize = new Sequelize('sqlreact', 'root', '', {
     host: 'localhost',
-    user: 'root',
-    password: ''
+    dialect: 'mysql',
+    operatorsAliases: false,
+
+    pool: {
+        max: 5,
+        min: 0,
+        acquire: 30000,
+        idle: 10000
+    },
+
+    // SQLite only
+    //storage: 'path/to/database.sqlite'
 });
 
-connection.connect(function (err) {
-    if (err) {
-        console.error('error connecting: ' + err.stack);
-        return;
+//Test database connection
+sequelize
+    .authenticate()
+    .then(() => {
+        console.log('Connection has been established successfully.');
+    })
+    .catch(err => {
+        console.error('Unable to connect to the database:', err);
+    });
+
+const User = sequelize.define('user', {
+    userName: {
+        type: Sequelize.STRING
+    },
+    password: {
+        type: Sequelize.STRING
     }
-
-    console.log('mysql running');
 });
 
-module.exports = connection
+// force: true will drop the table if it already exists
+User.sync()
+/*User.sync({ force: true }).then(() => {
+    // Table created
+    return User.create({
+        userName: 'John',
+        password: 'Hancock'
+    });
+});*/
+
+module.exports = sequelize
+module.exports = User

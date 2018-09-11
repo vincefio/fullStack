@@ -9,9 +9,9 @@ import Signup from './components/Signup'
 const DisplayLinks = props => {
   if (props.loggedIn) {
     return (
-      <nav>
-        <div className="nav-wrapper">
-          <a href="#" id="logo" className="brand-logo">Logo</a>
+      <nav >
+        <div className="nav-wrapper black">
+          <a href="/" id="logo" className="brand-logo">Logo</a>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li><Link to="/">
               Home
@@ -26,8 +26,8 @@ const DisplayLinks = props => {
   } else {
     return (
       <nav>
-        <div className="nav-wrapper">
-          <a href="#" id="logo" className="brand-logo">Logo</a>
+        <div className="nav-wrapper black">
+          <a href="/" id="logo" className="brand-logo">Logo</a>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
 
             <li><Link to="/login">

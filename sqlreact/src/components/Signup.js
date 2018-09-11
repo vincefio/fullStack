@@ -21,7 +21,8 @@ export default class Signup extends Component {
                 usernameError: '',
                 passwordError: '',
                 confirmPasswordError: '',
-                samePassword: ''
+                samePassword: '',
+                userNameTaken: ''
             }
 
         }
@@ -37,7 +38,7 @@ export default class Signup extends Component {
 
 
 
-    validate = () => {
+    validate = (bool) => {
 
         let isError = false
         const errors = {}
@@ -60,6 +61,11 @@ export default class Signup extends Component {
         if (this.state.password !== this.state.confirmPassword) {
             isError = true
             errors.samePassword = 'Passwords must be the same'
+        }
+
+        if (bool) {
+            isError = true
+            errors.userNameTaken = 'This username is already in use'
         }
 
         if (isError) {
@@ -91,7 +97,11 @@ export default class Signup extends Component {
                 username: this.state.username,
                 password: this.state.password
             }).then(response => {
+                //console.log('response ' + JSON.stringify(response.data))
                 console.log('response ' + JSON.stringify(response.data))
+                if (response.data == true) {
+                    const errTwo = this.validate(response.data)
+                }
             })
         }
 
