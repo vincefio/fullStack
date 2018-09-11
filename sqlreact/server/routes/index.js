@@ -27,7 +27,14 @@ router.post('/signup', function (req, res) {
         } else {
             console.log('NO USER FOUND')
             console.log('============CREATE USER===========')
-            //isError = false
+            User.create({
+                userName: req.body.username,
+                password: req.body.password
+            }).then(() =>
+                console.log('=========USER CREATED========')
+
+            )
+
             res.send(false)
         }
     });

@@ -1,14 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Validator from 'validator'
+import { Redirect } from 'react-router-dom'
 
-/*const DisplayErrors = props => {
-    if (this.state.errors) {
-        return (
-
-        )
-    }
-}*/
 
 export default class Signup extends Component {
     constructor() {
@@ -23,8 +17,8 @@ export default class Signup extends Component {
                 confirmPasswordError: '',
                 samePassword: '',
                 userNameTaken: ''
-            }
-
+            },
+            loggedIn: false
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -103,6 +97,9 @@ export default class Signup extends Component {
                     const errTwo = this.validate(response.data)
                 } else {
                     console.log('CREATE THAT DAMN USER YO')
+                    this.setState({
+                        loggedIn: true
+                    })
                 }
             })
         }
@@ -116,43 +113,48 @@ export default class Signup extends Component {
             <div className="errorMessage" value={key} key={i} > {errors[key]}</div>
         )
 
-        return (
-            <div className="SignupForm container">
-                <h1>Signup form</h1>
-                <form action="">
-                    {errorOptions}
-                    <div className="input-field">
-                        <label htmlFor="username">Username: </label>
-                        <input
-                            type="text"
-                            name="username"
-                            value={this.state.username}
-                            onChange={this.handleChange}
-                            data-error={this.state.usernameError}
-                        />
-                    </div>
-                    <div className="input-field">
-                        <label htmlFor="password">Password: </label>
-                        <input
-                            type="password"
-                            name="password"
-                            value={this.state.password}
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                    <div className="input-field">
-                        <label htmlFor="confirmPassword">Confirm Password: </label>
-                        <input
-                            type="password"
-                            name="confirmPassword"
-                            value={this.state.confirmPassword}
-                            onChange={this.handleChange}
-                        />
-                    </div>
+        if (this.state.loggedIn) {
+            return <Redirect to={{ pathname: '/' }} />
+        }
+        else {
+            return (
+                <div className="SignupForm container">
+                    <h1>Signup form</h1>
+                    <form action="">
+                        {errorOptions}
+                        <div className="input-field">
+                            <label htmlFor="username">Username: </label>
+                            <input
+                                type="text"
+                                name="username"
+                                value={this.state.username}
+                                onChange={this.handleChange}
+                                data-error={this.state.usernameError}
+                            />
+                        </div>
+                        <div className="input-field">
+                            <label htmlFor="password">Password: </label>
+                            <input
+                                type="password"
+                                name="password"
+                                value={this.state.password}
+                                onChange={this.handleChange}
+                            />
+                        </div>
+                        <div className="input-field">
+                            <label htmlFor="confirmPassword">Confirm Password: </label>
+                            <input
+                                type="password"
+                                name="confirmPassword"
+                                value={this.state.confirmPassword}
+                                onChange={this.handleChange}
+                            />
+                        </div>
 
-                    <button type="submit" onClick={e => this.handleSubmit(e)}>Sign up</button>
-                </form>
-            </div>
-        )
+                        <button type="submit" onClick={e => this.handleSubmit(e)}>Sign up</button>
+                    </form>
+                </div>
+            )
+        }
     }
 }
