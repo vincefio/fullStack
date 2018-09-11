@@ -15,5 +15,4 @@ app.use(bodyParser.urlencoded({ extended: false }));
 /* Express app ROUTING */
 app.use('/', require('./routes'))
 
-
 app.listen(PORT, () => console.log(`app listening on port ${PORT}`))

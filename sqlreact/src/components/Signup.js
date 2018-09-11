@@ -20,7 +20,8 @@ export default class Signup extends Component {
             errors: {
                 usernameError: '',
                 passwordError: '',
-                confirmPasswordError: ''
+                confirmPasswordError: '',
+                samePassword: ''
             }
 
         }
@@ -54,6 +55,11 @@ export default class Signup extends Component {
         if (this.state.confirmPassword === '') {
             isError = true
             errors.confirmPasswordError = 'Confirm password field is required'
+        }
+
+        if (this.state.password !== this.state.confirmPassword) {
+            isError = true
+            errors.samePassword = 'Passwords must be the same'
         }
 
         if (isError) {
@@ -95,7 +101,7 @@ export default class Signup extends Component {
         let errors = this.state.errors
 
         const errorOptions = Object.keys(errors).map((key, i) =>
-            <div value={key} key={i}>{errors[key]}</div>
+            <div className="errorMessage" value={key} key={i} > {errors[key]}</div>
         )
 
         return (
