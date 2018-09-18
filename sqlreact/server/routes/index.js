@@ -52,12 +52,7 @@ router.post('/signup', function (req, res) {
 
 router.post('/login', (req, res) => {
     //console.log('login route ' + JSON.stringify(req.body))
-    /* bcrypt.compare(req.body.password, hash).then(function (res) {
-         // res == true
-         if (res) {
- 
-         }
-     });*/
+
 
     User.findAll({
         where: {
@@ -66,15 +61,34 @@ router.post('/login', (req, res) => {
     }).then(user => {
         // console.log('username ' + user)
 
-
+        let isTrue = false;
         if (user.length > 0) {
-            res.send('we have found this user in the database')
-            console.log('user ' + user[0].password)
+
+            //res.send('we have found this user in the database')
+            //console.log('user ' + user[0].password)
+            let userHash = user[0].password
             //time to check if the password matches
+            bcrypt.compare(req.body.password, userHash).then(function (res) {
+                console.log('checking password hash')
+                // res == true
+                if (res) {
+                    console.log('PASSWORDS MATCH!')
+                    isTrue = true;
+                } else {
+                    console.log('PASSWORDS DONT MATCH!')
+                    isTrue = false;
+                }
+            }).then(() => {
+                //console.log('is true ' + isTrue)
+                res.send(isTrue)
+            });
+            // console.log('isTrue ' + isTrue)
 
         } else {
-            res.send(false)
+            res.send(isTrue)
         }
+
+        // res.send(isTrue)
     })
 })
 

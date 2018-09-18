@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 const axios = require('axios')
+
 
 export default class Login extends Component {
     constructor() {
@@ -9,7 +11,8 @@ export default class Login extends Component {
             password: '',
             errors: {
                 usernameError: ''
-            }
+            },
+            loggedIn: false
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -82,17 +85,20 @@ export default class Login extends Component {
                 if (!response.data) {
                     //this means that there is no user in the database with this name
                     const errors = {}
-                    errors.usernameError = "User not found"
+                    errors.usernameError = "Username or password incorrect"
 
                     this.setState({
                         ...this.state,
                         errors: { ...errors }
                     })
-                }/* else {
+                } else {
+                    console.log('switch state to loggedIn')
                     //user is found, now we need to check password
-                    //this.ifLoggedIn()
-
-                }*/
+                    this.ifLoggedIn()
+                    this.setState({
+                        loggedIn: true
+                    })
+                }
             })
         }
     }
@@ -104,6 +110,9 @@ export default class Login extends Component {
             <div className="errorMessage" value={key} key={i} > {errors[key]}</div>
         )
 
+        if (this.state.loggedIn) {
+            return <Redirect to={{ pathname: '/' }} />
+        }
         return (
             <div className="SignupForm container">
                 <h1>Login form</h1>
