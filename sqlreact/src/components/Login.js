@@ -53,6 +53,12 @@ export default class Login extends Component {
         return isError;
     }
 
+    ifLoggedIn = () => {
+        const name = this.state.username
+        //alert('you logged in')
+        this.props.changeAppState(name)
+    }
+
     handleSubmit = (event) => {
         event.preventDefault()
         //console.log('HANDLESUBMIT HIT')
@@ -82,15 +88,10 @@ export default class Login extends Component {
                         ...this.state,
                         errors: { ...errors }
                     })
-                }
-                /*if (response.data === true) {
-                    const errTwo = this.validate(response.data)
-                } else {
-                    console.log('CREATE THAT DAMN USER YO')
-                    this.setState({
-                        loggedIn: true
-                    })
-                    this.ifLoggedIn()
+                }/* else {
+                    //user is found, now we need to check password
+                    //this.ifLoggedIn()
+
                 }*/
             })
         }

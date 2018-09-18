@@ -52,14 +52,26 @@ router.post('/signup', function (req, res) {
 
 router.post('/login', (req, res) => {
     //console.log('login route ' + JSON.stringify(req.body))
+    /* bcrypt.compare(req.body.password, hash).then(function (res) {
+         // res == true
+         if (res) {
+ 
+         }
+     });*/
 
     User.findAll({
         where: {
             username: req.body.username
         }
     }).then(user => {
+        // console.log('username ' + user)
+
+
         if (user.length > 0) {
             res.send('we have found this user in the database')
+            console.log('user ' + user[0].password)
+            //time to check if the password matches
+
         } else {
             res.send(false)
         }
