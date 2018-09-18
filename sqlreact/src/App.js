@@ -16,7 +16,7 @@ const DisplayLinks = props => {
             <li><Link to="/">
               Home
             </Link></li>
-            <li><Link to="/logout">
+            <li><Link to="#" onClick={props._logout}>
               Logout
             </Link></li>
           </ul>
@@ -63,12 +63,21 @@ class App extends Component {
     })
   }
 
+  _logout = (event) => {
+    event.preventDefault()
+    console.log('LOGGING OUT')
+    this.setState({
+      loggedIn: false,
+      user: null
+    })
+  }
+
   render() {
 
     return (
       <BrowserRouter>
         <div className="App">
-          <DisplayLinks loggedIn={this.state.loggedIn} />
+          <DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
 
           {/*Routes*/}
           <Route exact path="/" render={() => <Home user={this.state.user} />} />
