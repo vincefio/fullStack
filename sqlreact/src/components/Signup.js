@@ -73,6 +73,12 @@ export default class Signup extends Component {
         return isError;
     }
 
+    ifLoggedIn = () => {
+        const name = this.state.username
+        //alert('you logged in')
+        this.props.changeAppState(name)
+    }
+
     handleSubmit(event) {
         event.preventDefault()
 
@@ -92,7 +98,7 @@ export default class Signup extends Component {
                 password: this.state.password
             }).then(response => {
 
-                console.log('response ' + JSON.stringify(response.data))
+                //console.log('response ' + JSON.stringify(response.data))
                 if (response.data === true) {
                     const errTwo = this.validate(response.data)
                 } else {
@@ -100,6 +106,7 @@ export default class Signup extends Component {
                     this.setState({
                         loggedIn: true
                     })
+                    this.ifLoggedIn()
                 }
             })
         }

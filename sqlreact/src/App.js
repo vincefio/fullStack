@@ -16,7 +16,7 @@ const DisplayLinks = props => {
             <li><Link to="/">
               Home
             </Link></li>
-            <li><Link to="#">
+            <li><Link to="/logout">
               Logout
             </Link></li>
           </ul>
@@ -56,7 +56,15 @@ class App extends Component {
     // this._logout = this._logout.bind(this)
     //this._login = this._login.bind(this)
   }
+  updateUser = (name) => {
+    this.setState({
+      loggedIn: true,
+      user: name
+    })
+  }
+
   render() {
+
     return (
       <BrowserRouter>
         <div className="App">
@@ -65,7 +73,7 @@ class App extends Component {
           {/*Routes*/}
           <Route exact path="/" render={() => <Home user={this.state.user} />} />
           <Route exact path="/login" render={() => <Login _login={this._login} />} />
-          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/signup" render={() => <Signup changeAppState={this.updateUser} />} />
 
         </div>
       </BrowserRouter>
