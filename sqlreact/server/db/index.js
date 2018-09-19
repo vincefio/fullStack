@@ -36,8 +36,26 @@ const User = sequelize.define('user', {
     }
 });
 
+const Product = sequelize.define('product', {
+    price: {
+        type: Sequelize.INTEGER
+    },
+    quantity: {
+        type: Sequelize.INTEGER
+    },
+    name: {
+        type: Sequelize.STRING,
+    },
+    description: {
+        type: Sequelize.STRING
+    }
+})
+
+
+
 // force: true will drop the table if it already exists
 User.sync()
+Product.sync()
 /*User.sync({ force: true }).then(() => {
     // Table created
     return User.create({
@@ -48,3 +66,4 @@ User.sync()
 
 module.exports = sequelize
 module.exports = User
+module.exports = Product
