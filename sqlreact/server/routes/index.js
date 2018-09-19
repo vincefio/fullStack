@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const db = require('../db/index')
+const Products = require('../db/index')
 const User = require('../db/index')
 const bcrypt = require('bcrypt')
 const saltRounds = 10;
@@ -11,6 +12,15 @@ router.get('/createdb', (req, res) => {
         if (err) throw err
         res.send('database created')
     })
+})
+
+router.get('/products', (req, res) => {
+    console.log('get route hit onn server')
+    Products.findAll({})
+        .then(products => {
+            res.json(products)
+        })
+    // res.send(req.body)
 })
 
 router.post('/signup', function (req, res) {

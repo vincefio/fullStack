@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, NavItem, Button, Icon } from 'react-materialize'
+//import { Navbar, NavItem, Button, Icon } from 'react-materialize'
 import './App.css';
 import { Route, Link, BrowserRouter } from 'react-router-dom'
 import Home from './components/Home'
@@ -11,7 +11,7 @@ const DisplayLinks = props => {
     return (
       <nav >
         <div className="nav-wrapper black">
-          <a href="/" id="logo" className="brand-logo">But It</a>
+          <a href="/" id="logo" className="brand-logo">Buy It</a>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li><Link to="/">
               Home
@@ -27,7 +27,7 @@ const DisplayLinks = props => {
     return (
       <nav>
         <div className="nav-wrapper black">
-          <a href="/" id="logo" className="brand-logo">But It</a>
+          <a href="/" id="logo" className="brand-logo">Buy It</a>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
 
             <li><Link to="/login">

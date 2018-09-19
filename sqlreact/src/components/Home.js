@@ -1,6 +1,26 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 export default class Home extends Component {
+    componentDidMount() {
+        console.log('MOUNTINGGGGG')
+        /*  axios.get('/products')
+              .then((res) => {
+                  console.log(res)
+              })
+              .catch(function (error) {
+                  console.log(error);
+              });*/
+        fetch('/products')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                console.log(JSON.stringify(myJson));
+            });
+
+    }
+
     render() {
         return (
             <div >
