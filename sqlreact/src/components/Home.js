@@ -14,9 +14,10 @@ export default class Home extends Component {
         fetch('/products')
             .then(function (response) {
                 return response.json();
+
             })
             .then(function (myJson) {
-                console.log(JSON.stringify(myJson));
+                console.log('yo ' + JSON.stringify(myJson));
             });
 
     }

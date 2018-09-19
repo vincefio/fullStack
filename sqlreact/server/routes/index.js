@@ -18,7 +18,7 @@ router.get('/products', (req, res) => {
     console.log('get route hit onn server')
     Products.findAll({})
         .then(products => {
-            res.json(products)
+            res.send(products)
         })
     // res.send(req.body)
 })
