@@ -2,6 +2,8 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
+const items = require('./routes/projects');
+
 var app = express()
 
 // Bodyparser Middleware
@@ -15,9 +17,9 @@ db.once('open', function () {
     console.log('mongoDB connected')
 });
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
     res.send('hello world')
-})
+});
 
 const port = process.env.PORT || 8080;
 
