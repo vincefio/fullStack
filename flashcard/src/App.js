@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import CreateProject from './components/CreateProject'
 import './App.css';
 
 class App extends Component {
@@ -9,6 +9,7 @@ class App extends Component {
         <header className="App-header">
           <h1>Lets Rock N Roll</h1>
         </header>
+        <CreateProject />
       </div>
     );
   }
