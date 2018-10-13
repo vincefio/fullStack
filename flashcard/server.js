@@ -1,5 +1,4 @@
 const express = require('express')
-const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
 const items = require('./routes/projects');
@@ -9,17 +8,9 @@ var app = express()
 // Bodyparser Middleware
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true });
+const db = require('./db/index')
 
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-    console.log('mongoDB connected')
-});
-
-app.get('/', (req, res) => {
-    res.send('hello world')
-});
+app.use('/', require('./routes/projects'))
 
 const port = process.env.PORT || 8080;
 
