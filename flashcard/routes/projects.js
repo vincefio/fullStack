@@ -12,7 +12,11 @@ router.post('/db', (req, res) => {
 })
 
 router.post('/newDocument', (req, res) => {
-    //console.log(req)
+    console.log(req.body)
+    var newProject = new Project(req.body)
+    newProject.save(function (err) {
+        if (err) return handleError(err)
+    })
     //create new collection when user creates a new project
     /*Project.createCollection().then(function (collection) {
         console.log('Collection is created!');

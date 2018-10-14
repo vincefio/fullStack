@@ -5,14 +5,13 @@ export default class CreateProject extends Component {
     handleSubmit(event) {
         event.preventDefault()
         console.log('button clicked')
-        //console.log('event ' + event.target)
+        //console.log('event ' + event.target.name.value)
 
         axios.post('/newDocument', {
-            // projectName: event.target.name
-            projectName: 'Vince Project'
+            projectName: event.target.name.value
         })
             .then(function (response) {
-                console.log('response ' + JSON.stringify(response.data))
+                console.log('response ' + response.data)
             })
             .catch(function (error) {
                 console.log(error)
