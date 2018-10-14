@@ -1,3 +1,9 @@
 .App {
   text-align: center;
 }
+
+#createProjectForm{
+  width: 50%;
+  text-align: center;
+  margin: 0 auto;
+}
