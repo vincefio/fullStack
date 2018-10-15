@@ -4,6 +4,13 @@ import { Button, Icon, Modal } from 'react-materialize'
 
 
 export default class CreateProject extends Component {
+    //create state for adding flashcards
+    constructor(props) {
+        super(props);
+        this.state = {
+            currentCards: []
+        };
+    }
 
     handleSubmit(event) {
         event.preventDefault()
@@ -21,6 +28,10 @@ export default class CreateProject extends Component {
             })
     }
 
+    addCard() {
+        console.log('click works')
+    }
+
     render() {
         return (
             <div>
@@ -31,9 +42,19 @@ export default class CreateProject extends Component {
                     </label>
 
                     <Modal
-                        header='Modal Header'
+
                         trigger={<Button><i className="fas fa-plus"></i>Add FlashCard</Button>}>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                        <div className="row">
+                            <div className="input-field col s6">
+                                <h4>Front:</h4>
+                                <textarea id="textarea1" className="materialize-textarea"></textarea>
+                            </div>
+                            <div className="input-field col s6">
+                                <h4>Back:</h4>
+                                <textarea id="textarea2" className="materialize-textarea"></textarea>
+                            </div>
+                        </div>
+                        <a className="btn-floating btn-large waves-effect waves-light red" onClick={this.addCard}><i className="material-icons">add</i></a>
                     </Modal>
                     <br />
 
