@@ -8,13 +8,20 @@ export default class CreateProject extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentCards: []
+            currentCards: [],
+            textAreaFront: '',
+            textAreaBack: ''
         };
+
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleAdd = this.handleAdd.bind(this)
+        this.handleChange = this.handleChange.bind(this)
     }
 
     handleSubmit(event) {
         event.preventDefault()
         console.log('button clicked')
+        //console.log(event.target)
         //console.log('event ' + event.target.name.value)
 
         axios.post('/newDocument', {
@@ -28,8 +35,20 @@ export default class CreateProject extends Component {
             })
     }
 
-    addCard() {
-        console.log('click works')
+
+    handleAdd(event) {
+        event.preventDefault()
+        //console.log(event.target.textAreaFront.value)
+        //validate inputs
+
+        //add card to component state
+    }
+
+    handleChange(event) {
+        // console.log(this.state)
+        this.setState({
+            [event.target.name]: event.target.value
+        })
     }
 
     render() {
@@ -45,16 +64,19 @@ export default class CreateProject extends Component {
 
                         trigger={<Button><i className="fas fa-plus"></i>Add FlashCard</Button>}>
                         <div className="row">
-                            <div className="input-field col s6">
-                                <h4>Front:</h4>
-                                <textarea id="textarea1" className="materialize-textarea"></textarea>
-                            </div>
-                            <div className="input-field col s6">
-                                <h4>Back:</h4>
-                                <textarea id="textarea2" className="materialize-textarea"></textarea>
-                            </div>
+                            <form onSubmit={this.handleAdd} id="addCardForm">
+                                <div className="input-field col s6">
+                                    <h4>Front:</h4>
+                                    <textarea onChange={this.handleChange} name="textAreaFront" id="textarea1" className="materialize-textarea"></textarea>
+                                </div>
+                                <div className="input-field col s6">
+                                    <h4>Back:</h4>
+                                    <textarea onChange={this.handleChange} name="textAreaBack" id="textarea2" className="materialize-textarea"></textarea>
+                                </div>
+                                <input type="submit" value="Submit" />
+                            </form>
                         </div>
-                        <a className="btn-floating btn-large waves-effect waves-light red" onClick={this.addCard}><i className="material-icons">add</i></a>
+
                     </Modal>
                     <br />
 
