@@ -12,7 +12,8 @@ export default class CreateProject extends Component {
             textAreaFront: '',
             frontError: '',
             textAreaBack: '',
-            backError: ''
+            backError: '',
+            addError: true
         };
 
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -78,20 +79,36 @@ export default class CreateProject extends Component {
 
         const err = this.validate()
 
-        console.log(err)
+        //if no errors add the current cards part of db
+        if (!err) {
+            let currentCard = {}
+            currentCard.front = this.state.textAreaFront
+            currentCard.back = this.state.textAreaBack
+
+            let currentCards = this.state.currentCards.push(currentCard)
+
+            this.setState({
+                ...this.state,
+                textAreaFront: '',
+                textAreaBack: '',
+                addError: false,
+                ...currentCards
+            })
+
+        }
     }
 
     render() {
         let frontError = this.state.frontError
         let backError = this.state.backError
-
+        let addSuccess = <div></div>
 
         const frontErrorOptions = <div className="errorMessage">{frontError}</div>
-
-
-
         const backErrorOptions = <div className="errorMessage">{backError}</div>
 
+        if (!this.state.addError) {
+            addSuccess = <div>{'card has been added!'}</div>
+        }
         return (
 
             <div>
@@ -109,13 +126,14 @@ export default class CreateProject extends Component {
                                 <div className="input-field col s6">
                                     {frontErrorOptions}
                                     <h4>Front:</h4>
-                                    <textarea onChange={this.handleChange} name="textAreaFront" id="textarea1" className="materialize-textarea validate"></textarea>
+                                    <textarea value={this.state.textAreaFront} onChange={this.handleChange} name="textAreaFront" id="textarea1" className="materialize-textarea validate"></textarea>
                                 </div>
                                 <div className="input-field col s6">
                                     {backErrorOptions}
                                     <h4>Back:</h4>
-                                    <textarea onChange={this.handleChange} name="textAreaBack" id="textarea2" className="materialize-textarea validate"></textarea>
+                                    <textarea value={this.state.textAreaBack} onChange={this.handleChange} name="textAreaBack" id="textarea2" className="materialize-textarea validate"></textarea>
                                 </div>
+                                {addSuccess}
                                 <input type="submit" value="Submit" />
                             </form>
                         </div>
