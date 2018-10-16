@@ -58,6 +58,7 @@ export default class CreateProject extends Component {
         this.setState({
             ...this.state,
             ...errors
+            // errors: { ...errors }
         })
 
         return isError;
@@ -81,7 +82,18 @@ export default class CreateProject extends Component {
     }
 
     render() {
+        let frontError = this.state.frontError
+        let backError = this.state.backError
+
+
+        const frontErrorOptions = <div className="errorMessage">{frontError}</div>
+
+
+
+        const backErrorOptions = <div className="errorMessage">{backError}</div>
+
         return (
+
             <div>
                 <form id="createProjectForm" onSubmit={this.handleSubmit}>
                     <label>
@@ -95,10 +107,12 @@ export default class CreateProject extends Component {
                         <div className="row">
                             <form onSubmit={this.handleAdd} id="addCardForm">
                                 <div className="input-field col s6">
+                                    {frontErrorOptions}
                                     <h4>Front:</h4>
                                     <textarea onChange={this.handleChange} name="textAreaFront" id="textarea1" className="materialize-textarea validate"></textarea>
                                 </div>
                                 <div className="input-field col s6">
+                                    {backErrorOptions}
                                     <h4>Back:</h4>
                                     <textarea onChange={this.handleChange} name="textAreaBack" id="textarea2" className="materialize-textarea validate"></textarea>
                                 </div>
