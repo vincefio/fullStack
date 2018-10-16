@@ -9,6 +9,7 @@ export default class CreateProject extends Component {
         super(props);
         this.state = {
             currentCards: [],
+            projectName: '',
             textAreaFront: '',
             frontError: '',
             textAreaBack: '',
@@ -49,15 +50,18 @@ export default class CreateProject extends Component {
         if (this.state.textAreaFront.length < 1) {
             isError = true
             errors.frontError = 'Must have input'
+            //this.state.addError = true;
         }
 
         if (this.state.textAreaBack.length < 1) {
             isError = true
             errors.backError = 'Must have input'
+            //this.state.addError = true;
         }
 
         this.setState({
             ...this.state,
+            addError: true,
             ...errors
             // errors: { ...errors }
         })
@@ -91,6 +95,8 @@ export default class CreateProject extends Component {
                 ...this.state,
                 textAreaFront: '',
                 textAreaBack: '',
+                frontError: '',
+                backError: '',
                 addError: false,
                 ...currentCards
             })
@@ -109,18 +115,22 @@ export default class CreateProject extends Component {
         if (!this.state.addError) {
             addSuccess = <div>{'card has been added!'}</div>
         }
+
+        //loop through current cards in state and tell how many cards have been added
+        const cardsAdded = this.state.currentCards.length
+
         return (
 
             <div>
                 <form id="createProjectForm" onSubmit={this.handleSubmit}>
                     <label>
                         Project Name:
-                        <input type="text" name="name" />
+                        <input onChange={this.handleChange} type="text" name="projectName" />
                     </label>
 
                     <Modal
 
-                        trigger={<Button><i className="fas fa-plus"></i>Add FlashCard</Button>}>
+                        trigger={<Button className="amber"><i className="fas fa-plus"></i>Add FlashCard</Button>}>
                         <div className="row">
                             <form onSubmit={this.handleAdd} id="addCardForm">
                                 <div className="input-field col s6">
@@ -133,15 +143,19 @@ export default class CreateProject extends Component {
                                     <h4>Back:</h4>
                                     <textarea value={this.state.textAreaBack} onChange={this.handleChange} name="textAreaBack" id="textarea2" className="materialize-textarea validate"></textarea>
                                 </div>
+                                <div>{cardsAdded} cards added</div>
                                 {addSuccess}
-                                <input type="submit" value="Submit" />
+
+                                <input class="btn waves-effect waves-light submitButton" type="submit" value="Submit" />
                             </form>
                         </div>
 
                     </Modal>
                     <br />
+                    <div>{cardsAdded} cards added</div>
 
-                    <input type="submit" value="Submit" />
+                    <br />
+                    <input class="btn waves-effect waves-light submitButton" type="submit" value="Submit Project" />
                 </form>
 
 
