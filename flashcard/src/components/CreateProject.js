@@ -24,19 +24,21 @@ export default class CreateProject extends Component {
 
     handleSubmit(event) {
         event.preventDefault()
-        console.log('button clicked')
+        console.log('handlesubmit triggered')
         //console.log('event ' + event.target.name.value)
 
         const err = this.validateForm()
+        const err2 = this.validate()
 
         if (err) {
             console.log('error')
         }
 
-        if (!err) {
+        if (!err && !err2) {
             console.log('no error')
             axios.post('/newDocument', {
-                projectName: event.target.name.value
+                projectName: this.state.projectName,
+                projects: this.state.currentCards
             })
                 .then(function (response) {
                     console.log('response ' + response.data)
@@ -116,7 +118,7 @@ export default class CreateProject extends Component {
 
     handleAdd(event) {
         event.preventDefault()
-
+        console.log('handle add triggered')
         const err = this.validate()
 
         //if no errors add the current cards part of db
@@ -138,6 +140,8 @@ export default class CreateProject extends Component {
             })
 
         }
+
+
     }
 
     render() {
@@ -163,6 +167,9 @@ export default class CreateProject extends Component {
         return (
 
             <div>
+                {projectError}
+                <div></div>
+                {nameError}
                 <form id="createProjectForm" onSubmit={this.handleSubmit}>
                     <label>
                         Project Name:
@@ -202,7 +209,7 @@ export default class CreateProject extends Component {
 
 
 
-            </div>
+            </div >
         )
     }
 }

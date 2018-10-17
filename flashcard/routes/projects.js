@@ -18,13 +18,10 @@ router.post('/newDocument', (req, res) => {
         if (err) return handleError(err)
     })
     //create new collection when user creates a new project
-    /*Project.createCollection().then(function (collection) {
-        console.log('Collection is created!');
-    });*/
+
     //create new document for each new 'project'
-
-
-    res.send(req.body.projectName)
+    //res.send(req.body.projectName)
+    res.send('project added')
 })
 
 module.exports = router;
