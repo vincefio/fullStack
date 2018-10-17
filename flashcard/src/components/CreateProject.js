@@ -25,18 +25,54 @@ export default class CreateProject extends Component {
     handleSubmit(event) {
         event.preventDefault()
         console.log('button clicked')
-        //console.log(event.target)
         //console.log('event ' + event.target.name.value)
 
-        axios.post('/newDocument', {
-            projectName: event.target.name.value
+        const err = this.validateForm()
+
+        if (err) {
+            console.log('error')
+        }
+
+        if (!err) {
+            console.log('no error')
+            axios.post('/newDocument', {
+                projectName: event.target.name.value
+            })
+                .then(function (response) {
+                    console.log('response ' + response.data)
+                })
+                .catch(function (error) {
+                    console.log(error)
+                })
+        }
+
+    }
+
+    validateForm = () => {
+        let isError = false;
+        const errors = {
+            nameError: '',
+            projectError: ''
+        }
+
+        if (this.state.projectName.length < 1) {
+            isError = true;
+            errors.nameError = 'You must choose a title for your project'
+        }
+
+        if (this.state.currentCards.length < 1) {
+            isError = true;
+            errors.projectError = 'You havent added any cards to your project'
+        }
+
+        this.setState({
+            ...this.state,
+            addError: true,
+            ...errors
+            // errors: { ...errors }
         })
-            .then(function (response) {
-                console.log('response ' + response.data)
-            })
-            .catch(function (error) {
-                console.log(error)
-            })
+
+        return isError;
     }
 
     validate = () => {
@@ -108,6 +144,11 @@ export default class CreateProject extends Component {
         let frontError = this.state.frontError
         let backError = this.state.backError
         let addSuccess = <div></div>
+        let nameError = this.state.nameError
+        let projectError = this.state.projectError
+
+        const nameErrorOptions = <div className="errorMessage">{nameError}</div>
+        const projectErrorOptions = <div className="errorMessage">{projectError}</div>
 
         const frontErrorOptions = <div className="errorMessage">{frontError}</div>
         const backErrorOptions = <div className="errorMessage">{backError}</div>
@@ -146,7 +187,7 @@ export default class CreateProject extends Component {
                                 <div>{cardsAdded} cards added</div>
                                 {addSuccess}
 
-                                <input class="btn waves-effect waves-light submitButton" type="submit" value="Submit" />
+                                <input className="btn waves-effect waves-light submitButton" type="submit" value="Submit" />
                             </form>
                         </div>
 
@@ -155,7 +196,7 @@ export default class CreateProject extends Component {
                     <div>{cardsAdded} cards added</div>
 
                     <br />
-                    <input class="btn waves-effect waves-light submitButton" type="submit" value="Submit Project" />
+                    <input className="btn waves-effect waves-light submitButton" type="submit" value="Submit Project" />
                 </form>
 
 
