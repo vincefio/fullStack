@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Button, Icon, Modal } from 'react-materialize'
+import CardModal from './CardModal'
 
 
 export default class CreateProject extends Component {
@@ -176,29 +177,7 @@ export default class CreateProject extends Component {
                         <input onChange={this.handleChange} type="text" name="projectName" />
                     </label>
 
-                    <Modal
-
-                        trigger={<Button className="amber"><i className="fas fa-plus"></i>Add FlashCard</Button>}>
-                        <div className="row">
-                            <form onSubmit={this.handleAdd} id="addCardForm">
-                                <div className="input-field col s6">
-                                    {frontErrorOptions}
-                                    <h4>Front:</h4>
-                                    <textarea value={this.state.textAreaFront} onChange={this.handleChange} name="textAreaFront" id="textarea1" className="materialize-textarea validate"></textarea>
-                                </div>
-                                <div className="input-field col s6">
-                                    {backErrorOptions}
-                                    <h4>Back:</h4>
-                                    <textarea value={this.state.textAreaBack} onChange={this.handleChange} name="textAreaBack" id="textarea2" className="materialize-textarea validate"></textarea>
-                                </div>
-                                <div>{cardsAdded} cards added</div>
-                                {addSuccess}
-
-                                <input className="btn waves-effect waves-light submitButton" type="submit" value="Submit" />
-                            </form>
-                        </div>
-
-                    </Modal>
+                    <CardModal />
                     <br />
                     <div>{cardsAdded} cards added</div>
 
