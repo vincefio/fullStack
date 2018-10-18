@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import AddFlashCard from './AddFlashCard'
+import axios from 'axios'
 
 export default class ProjectForm extends Component {
     constructor(props) {
@@ -17,7 +18,7 @@ export default class ProjectForm extends Component {
     }
 
     addCardHandler(data) {
-        console.log('add card handler ' + data)
+        // console.log('add card handler ' + data)
         //set parent state to have current flashcards
         this.setState({
             ...this.state,
@@ -37,17 +38,17 @@ export default class ProjectForm extends Component {
         }
 
         if (!err) {
-            console.log('NO ERROR!')
-            /* axios.post('/newDocument', {
-                 projectName: this.state.projectName,
-                 projects: this.state.currentCards
-             })
-                 .then(function (response) {
-                     console.log('response ' + response.data)
-                 })
-                 .catch(function (error) {
-                     console.log(error)
-                 })*/
+            console.log('NO ERROR! PROJECT ADDED!')
+            axios.post('/newDocument', {
+                projectName: this.state.projectName,
+                cards: this.state.currentCards
+            })
+                .then(function (response) {
+                    console.log('response ' + response.data)
+                })
+                .catch(function (error) {
+                    console.log(error)
+                })
         }
     }
 
@@ -75,17 +76,17 @@ export default class ProjectForm extends Component {
             })
         }
 
-        /* if (this.state.currentCards.length < 1) {
-             isError = true;
-             errors.projectError = 'You havent added any cards to your project'
- 
-             this.setState({
-                 ...this.state,
-                 addError: true,
-                 ...errors
-                 // errors: { ...errors }
-             })
-         }*/
+        if (this.state.currentCards.length < 1) {
+            isError = true;
+            errors.projectError = 'You havent added any cards to your project'
+
+            this.setState({
+                ...this.state,
+                addError: true,
+                ...errors
+                // errors: { ...errors }
+            })
+        }
 
 
         return isError;

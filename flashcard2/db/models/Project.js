@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var projectSchema = new Schema({
     projectName: String,
-    projects: [{ front: String, back: String }]
+    cards: [{ front: String, back: String }]
 });
 
 //create model
