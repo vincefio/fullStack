@@ -40,6 +40,9 @@ export default class AddFlashCard extends Component {
                 ...currentCards
             })
 
+            //add cards to parents state
+            this.props.handler(currentCards)
+
         }
 
         console.log('----CARD SUCCESSFULLY ADDED---')
