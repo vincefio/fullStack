@@ -41,11 +41,13 @@ export default class AddFlashCard extends Component {
             })
 
             //add cards to parents state
-            this.props.handler(currentCards)
+            //console.log(this.state.currentCards)
+            this.props.handler(this.state.currentCards)
 
+
+            console.log('----CARD SUCCESSFULLY ADDED---')
         }
 
-        console.log('----CARD SUCCESSFULLY ADDED---')
     }
 
     validate = () => {
@@ -111,7 +113,7 @@ export default class AddFlashCard extends Component {
 
                 trigger={<Button className="amber"><i className="fas fa-plus"></i>Add FlashCard</Button>}>
                 <div className="row">
-                    <form onSubmit={this.handleAdd} id="addCardForm">
+                    <form id="addCardForm">
                         <div className="input-field col s6">
 
                             <h4>Front:</h4>
@@ -127,7 +129,8 @@ export default class AddFlashCard extends Component {
                         <div>{cardsAdded} cards added</div>
                         {addSuccess}
 
-                        <input className="btn waves-effect waves-light submitButton" type="submit" value="Submit" />
+                        <button onClick={this.handleAdd} className="btn waves-effect waves-light submitButton" value="Submit">Submit</button>
+
                     </form>
                 </div>
 

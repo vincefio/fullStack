@@ -18,10 +18,17 @@ export default class ProjectForm extends Component {
 
     addCardHandler(data) {
         console.log('add card handler ' + data)
+        //set parent state to have current flashcards
+        this.setState({
+            ...this.state,
+            currentCards: data
+        })
+
     }
 
     handleSubmit(event) {
         event.preventDefault()
+        //event.stopPropagation()
 
         const err = this.validate()
 
