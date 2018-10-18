@@ -4,7 +4,7 @@ import AddFlashCard from './AddFlashCard'
 export default class ProjectForm extends Component {
     render() {
         return (
-            <div>
+            <div className='container'>
                 <form>
                     <label>
                         Name:
