@@ -20,12 +20,18 @@ router.get('/projects', (req, res) => {
         results = res;
     })
         .then(function () {
-            console.log('results ' + results)
+            // console.log('results ' + results)
             res.send(results)
         })
 
 
 
+})
+
+router.delete('/delete/:id', (req, res) => {
+    Project.findById(req.params.id)
+        .then(project => project.remove().then(() => res.json({ success: true })))
+        .catch(err => res.status(404).json({ success: false }));
 })
 
 router.post('/newDocument', (req, res) => {

@@ -10,6 +10,7 @@ export default class Projects extends Component {
         }
 
         this.componentDidMount = this.componentDidMount.bind(this)
+        this.onDeleteClick = this.onDeleteClick.bind(this)
     }
 
     componentDidMount() {
@@ -32,7 +33,21 @@ export default class Projects extends Component {
     }
 
     onDeleteClick(id) {
-        console.log('id ' + id)
+        // console.log('id ' + id)
+        console.log('project delete in process')
+
+        axios.delete('/delete/' + id)
+            .then((response) => {
+                //reset state
+                let newProjectResults = this.state.projectResults
+                    .filter(project => project._id != id)
+
+                this.setState({
+                    projectResults: newProjectResults
+                })
+                //console.log(response)
+            })
+            .catch(err => console.log(err))
     }
 
     render() {
@@ -43,7 +58,7 @@ export default class Projects extends Component {
             return (
                 <div key={project._id}>
                     <div className="projectListItem">{project.projectName}</div>
-                    <Button onClick={this.onDeleteClick.bind(this, project._id)} waves='light'>button</Button>
+                    <Button onClick={this.onDeleteClick.bind(this, project._id)} waves='light'>Delete</Button>
                 </div>
             )
         })
