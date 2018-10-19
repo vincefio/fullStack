@@ -4,6 +4,7 @@ import AddProject from './components/AddProject'
 import Nav from './components/Nav'
 import Home from './components/Home'
 import Projects from './components/Projects'
+import './App.css'
 
 class App extends Component {
   render() {

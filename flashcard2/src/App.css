@@ -7,19 +7,32 @@
   height: 40vmin;
 }
 
+.logo{
+  color: #fff;
+  float: left;
+  display: inline-block;
+  font-size: 2.1rem;
+  padding: 0;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+/*----NAV COMPONENT-----*/
+nav{
+  padding: 0
 }
 
 @keyframes App-logo-spin {

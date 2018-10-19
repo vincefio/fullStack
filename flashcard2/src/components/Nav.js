@@ -5,9 +5,9 @@ export default class Nav extends Component {
     render() {
         return (
             <div>
-                <nav>
+                <nav className='blue'>
                     <div className="nav-wrapper">
-                        <a href="#" className="brand-logo">FlashCard</a>
+                        <a href="#" className="logo">FlashCard</a>
                         <ul id="nav-mobile" className="right hide-on-med-and-down">
 
                             <li><Link to="/">Home</Link></li>
