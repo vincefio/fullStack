@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { Button } from 'react-materialize'
 
 export default class Projects extends Component {
     constructor() {
@@ -30,11 +31,21 @@ export default class Projects extends Component {
 
     }
 
+    onDeleteClick(id) {
+        console.log('id ' + id)
+    }
+
     render() {
         //use a map function to render DOM elements from db/state
 
-        var projectList = this.state.projectResults.map((project, i) => {
-            return <div key={i} className="projectListItem">{project.projectName}</div>
+        var projectList = this.state.projectResults.map((project) => {
+
+            return (
+                <div key={project._id}>
+                    <div className="projectListItem">{project.projectName}</div>
+                    <Button onClick={this.onDeleteClick.bind(this, project._id)} waves='light'>button</Button>
+                </div>
+            )
         })
 
         return (
