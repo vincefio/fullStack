@@ -29,14 +29,18 @@ router.get('/projects', (req, res) => {
 })
 
 router.post('/newDocument', (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
+    console.log('new document route')
     var newProject = new Project(req.body)
     newProject.save(function (err) {
         if (err) return handleError(err)
+
     })
 
-    //res.send(req.body.projectName)
-    res.redirect('/projects')
+
+    res.send('somethinggs supposed to happen')
+    //res.redirect('/projects')
+
 })
 
 module.exports = router;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import AddFlashCard from './AddFlashCard'
 import axios from 'axios'
 
@@ -9,7 +10,8 @@ export default class ProjectForm extends Component {
             currentCards: [],
             projectName: '',
             projectError: '',
-            addError: true
+            addError: true,
+            redirect: false
         }
 
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -43,8 +45,14 @@ export default class ProjectForm extends Component {
                 projectName: this.state.projectName,
                 cards: this.state.currentCards
             })
-                .then(function (response) {
+                .then((response) => {
                     console.log('response ' + response.data)
+                    // console.log('status ' + response.status)
+                    //set the state for a redirect
+                    this.setState({
+                        ...this.state,
+                        redirect: true
+                    })
                 })
                 .catch(function (error) {
                     console.log(error)
@@ -97,6 +105,11 @@ export default class ProjectForm extends Component {
         //let cardsAdded = this.state.currentCards.length
 
         const nameErrorOptions = <div className="errorMessage">{frontError}</div>
+
+        const { redirect } = this.state;
+        if (redirect) {
+            return <Redirect to='/projects' />
+        }
 
 
         return (
