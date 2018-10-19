@@ -8,7 +8,24 @@ router.get('/', (req, res) => {
 
 router.post('/db', (req, res) => {
     Project.create({ projectName: 'First Project' }, { projects: [{ front: 'test front' }, { back: 'test back' }] })
-    res.end
+    res.end()
+})
+
+router.get('/projects', (req, res) => {
+    //console.log('project get hit')
+
+    let results = '';
+
+    Project.find({}, function (err, res) {
+        results = res;
+    })
+        .then(function () {
+            console.log('results ' + results)
+            res.send(results)
+        })
+
+
+
 })
 
 router.post('/newDocument', (req, res) => {
@@ -17,11 +34,9 @@ router.post('/newDocument', (req, res) => {
     newProject.save(function (err) {
         if (err) return handleError(err)
     })
-    //create new collection when user creates a new project
 
-    //create new document for each new 'project'
     //res.send(req.body.projectName)
-    res.send('project added')
+    res.redirect('/projects')
 })
 
 module.exports = router;
