@@ -19,6 +19,7 @@ export default class Projects extends Component {
                 console.log(response.data)
                 let results = response.data
 
+                //set state to database results
                 this.setState({
                     projectResults: results
                 })
@@ -27,14 +28,19 @@ export default class Projects extends Component {
                 console.log(error)
             })
 
-        //set state to database results
-
     }
 
     render() {
+        //use a map function to render DOM elements from db/state
+
+        var projectList = this.state.projectResults.map((project, i) => {
+            return <div key={i} className="projectListItem">{project.projectName}</div>
+        })
+
         return (
             <div>
                 <h1>Projects</h1>
+                {projectList}
             </div>
         )
     }
