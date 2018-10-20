@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Button } from 'react-materialize'
+import DisplayFlashCard from './DisplayFlashCard'
 
 export default class Projects extends Component {
     constructor() {
@@ -50,6 +51,10 @@ export default class Projects extends Component {
             .catch(err => console.log(err))
     }
 
+    studyClick(id) {
+        console.log('study button clicked ' + id)
+    }
+
     render() {
         //use a map function to render DOM elements from db/state
 
@@ -57,9 +62,10 @@ export default class Projects extends Component {
 
             return (
                 <div className='projectDiv valign-wrapper' key={project._id}>
-                    <Button className="project-delete right red" onClick={this.onDeleteClick.bind(this, project._id)} waves=''><i class="material-icons">clear</i></Button>
+                    <Button className="project-delete right red" onClick={this.onDeleteClick.bind(this, project._id)}><i className="material-icons">clear</i></Button>
                     <div className="projectListTitle">{project.projectName}</div>
-                    <Button className='study-button'>Study</Button>
+
+                    <Button onClick={this.studyClick.bind(this, project._id)} className='study-button'>Study</Button>
                 </div>
             )
         })

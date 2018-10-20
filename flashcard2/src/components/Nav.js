@@ -23,7 +23,7 @@ export default class Nav extends Component {
                             <a className='dropdown-trigger hide-on-large-only' href='#' data-target='dropdown1'><i className='material-icons'>dehaze</i></a>
                         </ul>
 
-                        <ul id='dropdown1' class='dropdown-content'>
+                        <ul id='dropdown1' className='dropdown-content'>
                             <li className=""><Link to="/">Home</Link></li>
                             <li className=""><Link to="/addproject">New Project</Link></li>
                             <li className=""><Link to="/projects">Study</Link></li>
