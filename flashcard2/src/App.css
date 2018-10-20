@@ -60,7 +60,7 @@ nav{
   margin-top: 25px;
 }
 
-button{
+.button{
   width: 130px;
   text-align: center;
   animation: fadein ease-in;

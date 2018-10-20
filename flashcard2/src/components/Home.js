@@ -10,7 +10,7 @@ export default class Home extends Component {
                     <h2 id="header-text2">FlashCard!</h2>
                 </div>
                 <div className="button-container">
-                    <Button className='button btn-large red' waves='light'>Study</Button>
+                    <Button className='button btn-large red' waves='light' href="/projects">Study</Button>
                     <Button className='button btn-large' waves='light'>Create New</Button>
                 </div>
             </div>
