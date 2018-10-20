@@ -32,7 +32,7 @@
 
 /*----NAV + HEADER COMPONENT-----*/
 nav{
-  padding: 0
+  padding: 0 25px;
 }
 
 #header-text{
@@ -61,13 +61,13 @@ nav{
 }
 
 .button{
-  width: 130px;
+  width: 150px;
   text-align: center;
   animation: fadein ease-in;
   animation-duration: 4s;
 }
 
-.btn:nth-child(2){
+.button:nth-child(2){
 margin-left: 50px;
 }
 
