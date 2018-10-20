@@ -115,6 +115,7 @@ export default class ProjectForm extends Component {
 
         return (
             <div className='container'>
+                <h1>Add Project</h1>
                 <form onSubmit={this.handleSubmit}>
                     {nameErrorOptions}
                     <label>
@@ -122,7 +123,7 @@ export default class ProjectForm extends Component {
                     <input onChange={this.handleChange} type="text" name="projectName" />
                     </label>
                     <AddFlashCard handler={this.addCardHandler} />
-                    <input type="submit" value="Submit" />
+                    <input id="project-submit" className="btn" type="submit" value="Submit" />
                 </form>
             </div>
         )

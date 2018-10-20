@@ -15,7 +15,7 @@ export default class Projects extends Component {
 
     componentDidMount() {
         // let results;
-        console.log('component will mount')
+        //console.log('component will mount')
         axios.get('/projects')
             .then((response) => {
                 console.log(response.data)
@@ -56,15 +56,16 @@ export default class Projects extends Component {
         var projectList = this.state.projectResults.map((project) => {
 
             return (
-                <div key={project._id}>
-                    <div className="projectListItem">{project.projectName}</div>
-                    <Button onClick={this.onDeleteClick.bind(this, project._id)} waves='light'>Delete</Button>
+                <div className='projectDiv valign-wrapper' key={project._id}>
+                    <Button className="project-delete right red" onClick={this.onDeleteClick.bind(this, project._id)} waves=''><i class="material-icons">clear</i></Button>
+                    <div className="projectListTitle">{project.projectName}</div>
+                    <Button className='study-button'>Study</Button>
                 </div>
             )
         })
 
         return (
-            <div>
+            <div className='container'>
                 <h1>Projects</h1>
                 {projectList}
             </div>

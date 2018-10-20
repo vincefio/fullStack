@@ -104,9 +104,10 @@ export default class AddFlashCard extends Component {
         const frontErrorOptions = <div className="errorMessage">{frontError}</div>
         const backErrorOptions = <div className="errorMessage">{backError}</div>
 
-        if (!this.state.addError) {
+        //currently not using
+        /*if (!this.state.addError) {
             addSuccess = <div>{'card has been added!'}</div>
-        }
+        }*/
 
         return (
             <Modal
@@ -126,10 +127,10 @@ export default class AddFlashCard extends Component {
                             <textarea value={this.state.textAreaBack} onChange={this.handleChange} name="textAreaBack" id="textarea2" className="materialize-textarea validate"></textarea>
                             {backErrorOptions}
                         </div>
-                        <div>{cardsAdded} cards added</div>
-                        {addSuccess}
+                        <div className="col-s12">{cardsAdded} cards added</div>
 
-                        <button onClick={this.handleAdd} className="btn waves-effect waves-light submitButton" value="Submit">Submit</button>
+
+                        <button id='flashcard-submit' onClick={this.handleAdd} className="btn waves-effect waves-light submitButton" value="Submit">Submit</button>
 
                     </form>
                 </div>

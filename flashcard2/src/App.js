@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import AddProject from './components/AddProject'
+import ProjectForm from './components/ProjectForm'
 import Nav from './components/Nav'
 import Home from './components/Home'
 import Projects from './components/Projects'
@@ -11,12 +11,12 @@ class App extends Component {
     //<Route exact path="/" render={() => <Home />} />
     return (
 
-      <div className="App">
+      <div>
         <Nav />
 
 
         <Route exact path='/' component={Home} />
-        <Route path="/addProject" component={AddProject} />
+        <Route path="/addProject" component={ProjectForm} />
         <Route path="/projects" component={Projects} />
       </div>
 
