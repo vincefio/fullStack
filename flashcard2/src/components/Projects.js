@@ -1,17 +1,21 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Button } from 'react-materialize'
-import DisplayFlashCard from './DisplayFlashCard'
+import Flashcard from './Flashcard'
+
 
 export default class Projects extends Component {
     constructor() {
         super();
         this.state = {
-            projectResults: []
+            projectResults: [],
+            currentID: '',
+            showCase: false
         }
 
         this.componentDidMount = this.componentDidMount.bind(this)
         this.onDeleteClick = this.onDeleteClick.bind(this)
+        this.studyClick = this.studyClick.bind(this)
     }
 
     componentDidMount() {
@@ -53,6 +57,16 @@ export default class Projects extends Component {
 
     studyClick(id) {
         console.log('study button clicked ' + id)
+        this.setState({
+            ...this.state,
+            currentID: id,
+            showCase: true
+        })
+
+        if (this.state.showCase) {
+            console.log('render works in function')
+        }
+
     }
 
     render() {
@@ -70,8 +84,16 @@ export default class Projects extends Component {
             )
         })
 
+        let card;
+        //render out flashcard component
+        if (this.state.showCase) {
+            card = <Flashcard id={this.state.currentID} />
+        }
+
+
         return (
             <div className='container'>
+                {card}
                 <h1>Projects</h1>
                 {projectList}
             </div>
