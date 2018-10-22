@@ -24,7 +24,13 @@ router.get('/projects', (req, res) => {
             res.send(results)
         })
 
+})
 
+router.post('/displayCard', (req, res) => {
+    //    console.log('displayCard route hit')
+    Project.findById(req.body.id)
+        .then((project) => { res.send(project) })
+        .catch(err => { console.log(err) })
 
 })
 
