@@ -63,10 +63,6 @@ export default class Projects extends Component {
             showCase: true
         })
 
-        if (this.state.showCase) {
-            console.log('render works in function')
-        }
-
     }
 
     render() {
