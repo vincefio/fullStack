@@ -77,18 +77,19 @@ export default class Flashcard extends Component {
         }
 
         if (counter == this.state.cards.length) {
-            newGameDiv = <div>Play Again?</div>
-            newGameButton = <a onClick={this.newGame} class="waves-effect waves-light btn">Play Again</a>
+            newGameDiv = <h2>Play Again?</h2>
+            newGameButton = <a onClick={this.newGame} className="waves-effect waves-light btn">Play Again</a>
         }
 
 
         return (
             <div>
-                {newGameDiv}
-                {newGameButton}
+
                 <h4>Card {this.state.counter + 1}</h4>
                 <div className="flashcardDisplay row">
                     <div className="flashcardFront col s6">
+                        {newGameDiv}
+                        {newGameButton}
                         <h2>{cardDivFront}</h2>
                     </div>
                     <div className="flashcardBack col s6">
