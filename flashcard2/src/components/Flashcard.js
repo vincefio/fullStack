@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
+
 export default class Flashcard extends Component {
     constructor(props) {
         super(props);
         this.state = {
             currentDoc: [],
-            cards: []
+            cards: [],
+            counter: 0,
+            showAnswer: false
         }
     }
 
@@ -30,26 +33,68 @@ export default class Flashcard extends Component {
         console.log(this.state)
     }
 
-    componentDidMount() {
-        //loop through state to display card in proper manner
-        console.log('componet did mount')
-        console.log(this.state.cards)
+    answerClick = () => {
+        //console.log('answer click triggered')
+        this.setState({
+            showAnswer: true
+        })
+    }
+
+    nextClick = () => {
+        //console.log('next click clicked')
+        this.setState({
+            counter: this.state.counter + 1,
+            showAnswer: false
+        })
+    }
+
+    newGame = () => {
+        console.log('new game clicked')
+        this.setState({
+            counter: 0,
+            showAnswer: false
+        })
     }
 
     render() {
         const flashcard = this.state.currentDoc;
+        let cards = this.state.cards
+        let counter = this.state.counter
+        let nextButton;
+        let newGameButton;
+        let newGameDiv;
+        let cardDivFront;
+        let cardDivBackButton;
+        if (counter < this.state.cards.length) {
+            cardDivFront = <div>{this.state.cards[counter].front}</div>
+            cardDivBackButton = <a onClick={this.answerClick} className="waves-effect waves-light btn">See Answer</a>
+
+
+            if (this.state.showAnswer) {
+                cardDivBackButton = <div>{this.state.cards[counter].back}</div>
+                nextButton = <a onClick={this.nextClick} className="waves-effect waves-light btn">Next</a>
+            }
+        }
+
+        if (counter == this.state.cards.length) {
+            newGameDiv = <div>Play Again?</div>
+            newGameButton = <a onClick={this.newGame} class="waves-effect waves-light btn">Play Again</a>
+        }
+
 
         return (
             <div>
-                <h1>{flashcard.projectName}</h1>
-                <h2></h2>
+                {newGameDiv}
+                {newGameButton}
+                <h4>Card {this.state.counter + 1}</h4>
                 <div className="flashcardDisplay row">
                     <div className="flashcardFront col s6">
-                        <h2></h2>
+                        <h2>{cardDivFront}</h2>
                     </div>
                     <div className="flashcardBack col s6">
-                        <p>back</p>
+                        <h2 id="cardAnswer">{cardDivBackButton}</h2>
                     </div>
+                    {nextButton}
                 </div>
             </div>
         )
