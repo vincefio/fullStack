@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import M from 'materialize-css'
 
 export default class Categories extends Component {
     constructor() {
@@ -8,6 +9,10 @@ export default class Categories extends Component {
             categories: []
         })
         this.componentDidMount = this.componentDidMount.bind(this)
+    }
+
+    componentWillMount() {
+        M.AutoInit()
     }
 
     componentDidMount() {
@@ -26,12 +31,18 @@ export default class Categories extends Component {
             .catch(function (error) {
                 console.log(error);
             });
+
     }
 
     render() {
+        let categories = this.state.categories
+
         return (
             <div>
                 <h4>categories</h4>
+                {categories.map((category, i) =>
+                    <li id={category.id} key={i}>{category.title}</li>
+                )}
             </div>
         )
     }
