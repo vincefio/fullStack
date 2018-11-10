@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import M from 'materialize-css'
+import { Button } from 'react-materialize'
 
 export default class Categories extends Component {
     constructor() {
@@ -8,7 +9,9 @@ export default class Categories extends Component {
         this.state = ({
             categories: []
         })
+
         this.componentDidMount = this.componentDidMount.bind(this)
+        this.onDeleteClick = this.onDeleteClick.bind(this)
     }
 
     componentWillMount() {
@@ -34,6 +37,10 @@ export default class Categories extends Component {
 
     }
 
+    onDeleteClick(id) {
+        console.log('delete clicked')
+    }
+
     render() {
         let categories = this.state.categories
 
@@ -41,7 +48,11 @@ export default class Categories extends Component {
             <div>
                 <h4>categories</h4>
                 {categories.map((category, i) =>
-                    <li id={category.id} key={i}>{category.title}</li>
+                    <div key={category._id}>
+                        <Button className="project-delete right red" onClick={this.onDeleteClick.bind(this, category._id)}><i className="material-icons">clear</i></Button>
+                        <div class="category" id={category.id} key={i}>{category.title}</div>
+                    </div>
+
                 )}
             </div>
         )
