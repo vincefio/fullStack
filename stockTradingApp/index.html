@@ -8,11 +8,19 @@
     <title>Stock Trading App</title>
 </head>
 
+<!--INCLUDE ANYCHART VISUALIZATION DATA-->
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-core.min.js" type="text/javascript"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-stock.min.js"></script>
+
 <body>
     <h2>lets make some moneyyy</h2>
 
+    <div id="container" style="width: 500px; height: 400px;"></div>
+
     <script>
+
         //https://api.iextrading.com/1.0
+        //GET /stock/{symbol}/chart/{range}
         fetch('https://api.iextrading.com/1.0/stock/aapl/chart/1m')
 
             .then(
