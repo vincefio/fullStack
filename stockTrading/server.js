@@ -11,4 +11,7 @@ app.use(bodyParser.json())
 //db connection
 var db = require('./db/connection')
 
+//require routes
+app.use('/', require('./routes'))
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
