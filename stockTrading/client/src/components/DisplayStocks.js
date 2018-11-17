@@ -12,10 +12,9 @@ export default class DisplayStocks extends Component {
     //display 50 random stocks
     componentDidMount() {
         var randArr = []
-        var newArr = []
 
         axios.get('https://api.iextrading.com/1.0/ref-data/symbols')
-            .then(function (response) {
+            .then((response) => {
                 console.log(response);
                 //generate 50 random numbers, put in array
                 for (var i = 0; i < 50; i++) {
@@ -23,11 +22,12 @@ export default class DisplayStocks extends Component {
                     randArr.push(response.data[randNum])
                 }
                 //console.log(randArr)
-            })
-            .then(response => {
                 this.setState({
                     randomStocks: randArr
                 })
+            })
+            .then(response => {
+
             })
             .catch(function (error) {
                 console.log(error);
@@ -35,10 +35,20 @@ export default class DisplayStocks extends Component {
     }
 
     render() {
-        return (
-            <div>
+        //map out the state to render paragraphs for each random stock object
 
+        return (
+            <div className="container">
+                <h2>50 Random Stocks</h2>
+                <p className="instructionText">Some stocks to help you get started. Click the stock to add to your cart</p>
+                <div className='randomDisplay'>
+
+                    {this.state.randomStocks.map(stock => {
+                        return <p key={stock.iexId}>{`${stock.symbol}: ${stock.name}`}</p>
+                    })}
+                </div>
             </div>
+
         )
     }
 }

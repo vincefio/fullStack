@@ -5,3 +5,12 @@
   font-size: 2.1rem;
   padding: 0;
 }
+
+.randomDisplay{
+  height: 300px;
+  overflow: scroll;
+}
+
+.instructionText{
+  font-size: 1.35em;
+}
