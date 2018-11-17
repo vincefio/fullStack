@@ -44,7 +44,7 @@ export default class DisplayStocks extends Component {
                 <div className='randomDisplay'>
 
                     {this.state.randomStocks.map(stock => {
-                        return <p key={stock.iexId}>{`${stock.symbol}: ${stock.name}`}</p>
+                        return <a href="#"><p key={stock.iexId}>{`${stock.symbol}: ${stock.name}`}</p></a>
                     })}
                 </div>
             </div>
