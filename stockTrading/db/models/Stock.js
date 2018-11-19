@@ -3,9 +3,10 @@ var Schema = mongoose.Schema;
 
 var stockSchema = new Schema({
     name: String,
-    symbol: String,
+    id: String
 });
 
-var StockList = mongoose.model('Stock', stockSchema);
+//create model
+var Stock = mongoose.model('Stock', stockSchema);
 
-modules.export = StockList;
+module.exports = Stock

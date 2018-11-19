@@ -1,14 +1,17 @@
 var express = require('express')
 var router = express.Router()
-
-/*router.get('/stocks', (req, res) => {
-    console.log('get hit')
-    res.send('get hit')
-})*/
+var Stock = require('../db/models/Stock')
 
 router.post('/newStock', (req, res) => {
-    console.log('get hit')
-    res.send('get hit')
+    //console.log(req.body)
+
+    var newStock = new Stock(req.body)
+    newStock.save(function (err) {
+        if (err) return handleError(err)
+
+    })
+
+    res.send('stock saved!')
 })
 
 module.exports = router;
