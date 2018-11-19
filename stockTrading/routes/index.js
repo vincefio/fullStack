@@ -14,4 +14,23 @@ router.post('/newStock', (req, res) => {
     res.send('stock saved!')
 })
 
+router.get('/myStocks', (req, res) => {
+
+    let results = '';
+
+    Stock.find({}, function (err, res) {
+        results = res;
+    })
+        .then(function () {
+            // console.log('results ' + results)
+            res.send(results)
+        })
+})
+
+router.delete(`/delete/:id`, (req, res) => {
+    Stock.findById(req.params.id)
+        .then(stock => stock.remove().then(() => res.json({ success: true })))
+        .catch(err => res.status(404).json({ success: false }));
+})
+
 module.exports = router;
