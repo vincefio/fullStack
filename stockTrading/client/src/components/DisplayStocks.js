@@ -7,6 +7,8 @@ export default class DisplayStocks extends Component {
         this.state = {
             randomStocks: []
         }
+
+        this.handleClick = this.handleClick.bind(this)
     }
 
     //display 50 random stocks
@@ -34,6 +36,20 @@ export default class DisplayStocks extends Component {
             });
     }
 
+    handleClick(name, id) {
+        //console.log(`clicked ${name}`)
+        axios.post('/newStock', {
+            name: name,
+            id: id
+        })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
     render() {
         //map out the state to render paragraphs for each random stock object
 
@@ -44,7 +60,7 @@ export default class DisplayStocks extends Component {
                 <div className='randomDisplay'>
 
                     {this.state.randomStocks.map(stock => {
-                        return <a href="#"><p key={stock.iexId}>{`${stock.symbol}: ${stock.name}`}</p></a>
+                        return <a key={stock.iexId} onClick={this.handleClick.bind(this, stock.name, stock.iexId)} href="#"><p >{`${stock.symbol}: ${stock.name}`}</p></a>
                     })}
                 </div>
             </div>

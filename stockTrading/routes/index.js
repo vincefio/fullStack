@@ -6,4 +6,9 @@ var router = express.Router()
     res.send('get hit')
 })*/
 
+router.post('/newStock', (req, res) => {
+    console.log('get hit')
+    res.send('get hit')
+})
+
 module.exports = router;
