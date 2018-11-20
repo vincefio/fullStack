@@ -15,8 +15,8 @@ export default class Nav extends Component {
                         <a className="logo">Stock Tip</a>
                         <ul id="nav-mobile" className="right ">
 
+                            <li className="hide-on-med-and-down"><a href="/">Home</a></li>
                             <li className="hide-on-med-and-down"><a href="/stocks">My Stocks</a></li>
-                            <li className="hide-on-med-and-down"><a href="badges.html">Components</a></li>
 
                             <li><a className="dropdown-trigger hide-on-large-only" href="#!" data-target="dropdown1">Dropdown<i className="material-icons right">dehaze</i></a></li>
 

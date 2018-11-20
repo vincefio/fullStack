@@ -36,8 +36,8 @@ export default class DisplayStocks extends Component {
             });
     }
 
-    handleClick(name, id) {
-        //e.preventDefault()
+    handleClick(name, id, event) {
+        event.preventDefault()
         //console.log(`clicked ${name}`)
         axios.post('/newStock', {
             name: name,
