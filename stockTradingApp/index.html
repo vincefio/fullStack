@@ -54,9 +54,13 @@
 
             // defining the chart type
             chart = anychart.stock();
+            chart.crosshair().displayMode("float");
+
 
             // set the series type
-            chart.plot(0).ohlc(mapping).name('ACME Corp.');
+            //chart.plot(0).column(mapping).name('ACME Corp.');
+
+            chart.plot(0).line(mapping);
 
             // setting the chart title
             chart.title('AnyStock Basic Sample');
@@ -91,6 +95,7 @@
             //learning machine learning
             //start pre-calc
             //logistic regression
+            //calculus
     </script>
 </body>
 
