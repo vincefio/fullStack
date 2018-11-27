@@ -17,7 +17,7 @@ export default class Nav extends Component {
 
                             <li className="hide-on-med-and-down"><a href="/">Home</a></li>
                             <li className="hide-on-med-and-down"><a href="/stocks">My Stocks</a></li>
-
+                            <li className="hide-on-med-and-down"><a href="/chart">Chart</a></li>
                             <li><a className="dropdown-trigger hide-on-large-only" href="#!" data-target="dropdown1">Dropdown<i className="material-icons right">dehaze</i></a></li>
 
 

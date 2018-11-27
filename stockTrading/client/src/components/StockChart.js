@@ -99,7 +99,7 @@ export default class StockChart extends Component {
                     width={800}
                     height={600}
                     instance={chart}
-                    title="Stock demo"
+                    title="Compare Stocks"
                 />
             </div>
         )

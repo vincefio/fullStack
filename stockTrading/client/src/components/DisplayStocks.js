@@ -36,11 +36,11 @@ export default class DisplayStocks extends Component {
             });
     }
 
-    handleClick(name, id, event) {
+    handleClick(symbol, id, event) {
         event.preventDefault()
         //console.log(`clicked ${name}`)
         axios.post('/newStock', {
-            name: name,
+            name: symbol,
             id: id
         })
             .then(function (response) {
@@ -61,9 +61,10 @@ export default class DisplayStocks extends Component {
                 <div className='randomDisplay'>
 
                     {this.state.randomStocks.map(stock => {
-                        return <a key={stock.iexId} onClick={this.handleClick.bind(this, stock.name, stock.iexId)} href="#"><p >{`${stock.symbol}: ${stock.name}`}</p></a>
+                        return <a key={stock.iexId} onClick={this.handleClick.bind(this, stock.symbol, stock.iexId)} href="#"><p >{`${stock.symbol}: ${stock.name}`}</p></a>
                     })}
                 </div>
+                <div className="instructionText">For all accepted symbols click <a href="https://api.iextrading.com/1.0/ref-data/symbols" target="_blank">here</a></div>
             </div>
 
         )
