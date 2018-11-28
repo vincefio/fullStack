@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
 import AnyChart from 'anychart-react'
 import anychart from 'anychart'
+import { connect } from 'react-redux'
+import { fetchPosts } from '../actions/postActions'
 
-export default class StockChart extends Component {
+class StockChart extends Component {
+    componentWillMount() {
+        this.props.fetchPosts()
+    }
+
     render() {
         var table, mapping, chart;
         table = anychart.data.table();
@@ -105,3 +111,5 @@ export default class StockChart extends Component {
         )
     }
 }
+
+export default connect(null, { fetchPosts })(StockChart)
