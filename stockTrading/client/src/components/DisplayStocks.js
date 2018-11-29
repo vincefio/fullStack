@@ -1,19 +1,23 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { connect } from 'react-redux'
+import { fetchStocks } from '../actions/postActions'
 
-export default class DisplayStocks extends Component {
-    constructor() {
+
+class DisplayStocks extends Component {
+    /*constructor() {
         super()
         this.state = {
             randomStocks: []
         }
 
         this.handleClick = this.handleClick.bind(this)
-    }
+    }*/
 
     //display 50 random stocks
     componentDidMount() {
-        var randArr = []
+        this.props.fetchStocks()
+        /*var randArr = []
 
         axios.get('https://api.iextrading.com/1.0/ref-data/symbols')
             .then((response) => {
@@ -33,7 +37,7 @@ export default class DisplayStocks extends Component {
             })
             .catch(function (error) {
                 console.log(error);
-            });
+            });*/
     }
 
     handleClick(symbol, id, event) {
@@ -60,7 +64,7 @@ export default class DisplayStocks extends Component {
                 <p className="instructionText">Some stocks to help you get started. Click the stock to add to your cart</p>
                 <div className='randomDisplay'>
 
-                    {this.state.randomStocks.map(stock => {
+                    {this.props.stocks.map(stock => {
                         return <a key={stock.iexId} onClick={this.handleClick.bind(this, stock.symbol, stock.iexId)} href="#"><p >{`${stock.symbol}: ${stock.name}`}</p></a>
                     })}
                 </div>
@@ -70,3 +74,9 @@ export default class DisplayStocks extends Component {
         )
     }
 }
+
+const mapStateToProps = state => ({
+    stocks: state.stocks.items
+})
+
+export default connect(mapStateToProps, { fetchStocks })(DisplayStocks)
