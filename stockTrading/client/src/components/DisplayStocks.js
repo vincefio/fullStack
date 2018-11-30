@@ -57,13 +57,14 @@ class DisplayStocks extends Component {
 
     render() {
         //map out the state to render paragraphs for each random stock object
-        /*if (this.props.stocks.data) {
-            const stockItems = this.props.stocks.data.map(stock => {
+        var stockItems
+        if (this.props.stocks.data) {
+            stockItems = this.props.stocks.data.map(stock => {
                 return <a key={stock.iexId} onClick={this.handleClick.bind(this, stock.symbol, stock.iexId)} href="#"><p >{`${stock.symbol}: ${stock.name}`}</p></a>
             })
-        }*/
+        }
 
-        console.log('render ' + JSON.stringify(this.props.stocks))
+        console.log('render ' + JSON.stringify(this.props.stocks.data))
 
         return (
             <div className="container">
@@ -71,7 +72,7 @@ class DisplayStocks extends Component {
                 <p className="instructionText">Some stocks to help you get started. Click the stock to add to your cart</p>
                 <div className='randomDisplay'>
 
-                    {/*stockItems*/}
+                    {stockItems}
                 </div>
                 <div className="instructionText">For all accepted symbols click <a href="https://api.iextrading.com/1.0/ref-data/symbols" target="_blank">here</a></div>
             </div>
