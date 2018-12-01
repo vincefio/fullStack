@@ -7,9 +7,6 @@ import { fetchStocks } from '../actions/postActions'
 class DisplayStocks extends Component {
     constructor(props) {
         super(props)
-        /*this.state = {
-            randomStocks: []
-        }*/
 
         this.handleClick = this.handleClick.bind(this)
     }
@@ -17,33 +14,12 @@ class DisplayStocks extends Component {
     //display 50 random stocks
     componentWillMount() {
         this.props.fetchStocks()
-        /*var randArr = []
-
-        axios.get('https://api.iextrading.com/1.0/ref-data/symbols')
-            .then((response) => {
-                console.log(response);
-                //generate 50 random numbers, put in array
-                for (var i = 0; i < 50; i++) {
-                    var randNum = Math.floor(Math.random() * response.data.length)
-                    randArr.push(response.data[randNum])
-                }
-                //console.log(randArr)
-                this.setState({
-                    randomStocks: randArr
-                })
-            })
-            .then(response => {
-
-            })
-            .catch(function (error) {
-                console.log(error);
-            });*/
     }
 
     handleClick(symbol, id, event) {
         event.preventDefault()
-        //console.log(`clicked ${name}`)
-        axios.post('/newStock', {
+        console.log(`clicked ${symbol}`)
+        /*axios.post('/newStock', {
             name: symbol,
             id: id
         })
@@ -52,19 +28,21 @@ class DisplayStocks extends Component {
             })
             .catch(function (error) {
                 console.log(error);
-            });
+            });*/
     }
 
     render() {
         //map out the state to render paragraphs for each random stock object
         var stockItems
-        if (this.props.stocks.data) {
-            stockItems = this.props.stocks.data.map(stock => {
+        if (this.props.stocks) {
+            console.log('we have data')
+            console.log(this.props.stocks)
+            stockItems = this.props.stocks.map(stock => {
                 return <a key={stock.iexId} onClick={this.handleClick.bind(this, stock.symbol, stock.iexId)} href="#"><p >{`${stock.symbol}: ${stock.name}`}</p></a>
             })
         }
 
-        console.log('render ' + JSON.stringify(this.props.stocks.data))
+        // console.log('render ' + JSON.stringify(this.props))
 
         return (
             <div className="container">

@@ -1,8 +1,7 @@
 import { FETCH_STOCKS, NEW_POST } from '../actions/types';
 
 const initialState = {
-    stocks: [],
-    item: {}
+    stocks: []
 };
 
 export default function (state = initialState, action) {

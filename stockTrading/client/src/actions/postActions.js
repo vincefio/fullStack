@@ -14,16 +14,20 @@ export const fetchStocks = () => dispatch => {
                 var randNum = Math.floor(Math.random() * response.data.length)
                 randArr.push(response.data[randNum])
             }
-            //console.log(randArr)
+            console.log(randArr)
             /*this.setState({
                 randomStocks: randArr
             })*/
-            dispatch({
-                type: FETCH_STOCKS,
-                payload: response
-            })
-        })
-        /*.then(response => {
+            setTimeout(() => {
+                // Yay! Can invoke sync or async actions with `dispatch`
+                dispatch({
+                    type: FETCH_STOCKS,
+                    payload: randArr
+                })
+            }, 1000);
+
+        })/*
+        .then(response => {
 
         })*/
         .catch(function (error) {
