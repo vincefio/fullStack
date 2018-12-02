@@ -41,6 +41,7 @@ export const addStock = (symbol, id) => dispatch => {
                 type: "ADD_STOCK",
                 payload: symbol
             })
+            alert('stock added')
         })
         .catch(function (error) {
             console.log(error);
