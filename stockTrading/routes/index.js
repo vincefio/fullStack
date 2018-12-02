@@ -15,7 +15,7 @@ router.post('/newStock', (req, res) => {
 })
 
 router.get('/myStocks', (req, res) => {
-
+    console.log('my stocks get route')
     let results = '';
 
     Stock.find({}, function (err, res) {

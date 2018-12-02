@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import { fetchStocks } from '../actions/postActions'
+import { fetchStocks, addStock } from '../actions/postActions'
 
 
 class DisplayStocks extends Component {
@@ -19,6 +19,8 @@ class DisplayStocks extends Component {
     handleClick(symbol, id, event) {
         event.preventDefault()
         console.log(`clicked ${symbol}`)
+
+        this.props.addStock(symbol, id)
         /*axios.post('/newStock', {
             name: symbol,
             id: id
@@ -61,6 +63,7 @@ class DisplayStocks extends Component {
 
 const mapStateToProps = state => ({
     stocks: state.stocks.stocks
+
 })
 
-export default connect(mapStateToProps, { fetchStocks })(DisplayStocks)
+export default connect(mapStateToProps, { fetchStocks, addStock })(DisplayStocks)
