@@ -100,7 +100,7 @@ class StockChart extends Component {
         //chart.selectRange('2005-01-03', '2005-11-20');
 
         return (
-            <div>
+            <div className="container">
                 <AnyChart
                     width={800}
                     height={600}

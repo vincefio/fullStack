@@ -24,12 +24,6 @@ export const deleteStock = (id) => dispatch => {
         .then(function (response) {
             console.log(`response displayAction ${JSON.stringify(response)}`);
 
-            /*let newStockResults = self.state.mystocks
-                .filter(stock => stock._id !== id)*/
-
-            /*self.setState({
-                mystocks: newStockResults
-            })*/
             dispatch({
                 type: "DELETE_STOCK",
                 payload: id
