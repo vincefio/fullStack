@@ -10,7 +10,17 @@ export default function (state = initialState, action) {
                 ...state,
                 myStocks: action.payload
             }
-
+        case "DELETE_STOCK":
+            /* let newStockResults = self.state.mystocks
+                        .filter(stock => stock._id !== id)*/
+            let payload = action.payload
+            let newStockResults = state.myStocks.filter(
+                stock => stock._id !== payload
+            )
+            return {
+                ...state,
+                myStocks: newStockResults
+            }
         default:
             return state;
     }

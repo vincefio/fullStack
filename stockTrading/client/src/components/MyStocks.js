@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import { getMyStocks } from '../actions/displayAction'
+import { getMyStocks, deleteStock } from '../actions/displayAction'
 
 class MyStocks extends Component {
     constructor(props) {
@@ -19,7 +19,7 @@ class MyStocks extends Component {
 
     onDeleteClick(id) {
         //console.log(`delete ${id}`)
-        var self = this
+        /*var self = this
         axios.delete(`/delete/${id}`)
             .then(function (response) {
                 console.log(response);
@@ -33,7 +33,8 @@ class MyStocks extends Component {
             })
             .catch(function (error) {
                 console.log(error);
-            });
+            });*/
+        this.props.deleteStock(id)
     }
 
     render() {
@@ -51,19 +52,6 @@ class MyStocks extends Component {
                 )
             })
         }
-        /* if (this.props.myStocks.myStocks !== 'undefined') {
-             console.log(`if statement ${JSON.stringify(this.props.myStocks.myStocks)}`)
-             var stockList = this.props.mystocks.myStocks.map((stock) => {
- 
-                 return (
-                     <div className='projectDiv valign-wrapper' key={stock._id}>
-                         <div className="projectListTitle">{stock.name}</div>
-                         <a className="btn project-delete right red" onClick={this.onDeleteClick.bind(this, stock._id)}><i className="material-icons">clear</i></a>
- 
-                     </div>
-                 )
-             })
-         }*/
 
         return (
             <div className="container">
@@ -81,4 +69,4 @@ const mapStateToProps = state => ({
 
 })
 
-export default connect(mapStateToProps, { getMyStocks })(MyStocks)
+export default connect(mapStateToProps, { getMyStocks, deleteStock })(MyStocks)

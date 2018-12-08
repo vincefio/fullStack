@@ -2,20 +2,6 @@ import axios from 'axios'
 
 export const getMyStocks = () => dispatch => {
     //below is the componentDidMount function from myStocks
-    /* var self = this
- 
-     axios.get('/myStocks')
-         .then(function (response) {
-             //console.log(response);
- 
-             self.setState({
-                 mystocks: response.data
-             })
-         })
-         .catch(function (error) {
-             console.log(error);
-         });*/
-
     axios.get('/myStocks')
         .then(function (response) {
             console.log('my stocks ' + JSON.stringify(response.data))
@@ -29,4 +15,27 @@ export const getMyStocks = () => dispatch => {
         .catch(function (error) {
             console.log(error)
         })
+}
+
+export const deleteStock = (id) => dispatch => {
+    //var self = this
+    console.log(`delete stock ${id}`)
+    axios.delete(`/delete/${id}`)
+        .then(function (response) {
+            console.log(`response displayAction ${JSON.stringify(response)}`);
+
+            /*let newStockResults = self.state.mystocks
+                .filter(stock => stock._id !== id)*/
+
+            /*self.setState({
+                mystocks: newStockResults
+            })*/
+            dispatch({
+                type: "DELETE_STOCK",
+                payload: id
+            })
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 }
