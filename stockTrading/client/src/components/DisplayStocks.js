@@ -21,16 +21,7 @@ class DisplayStocks extends Component {
         console.log(`clicked ${symbol}`)
 
         this.props.addStock(symbol, id)
-        /*axios.post('/newStock', {
-            name: symbol,
-            id: id
-        })
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });*/
+
     }
 
     render() {
