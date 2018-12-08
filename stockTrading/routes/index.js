@@ -22,9 +22,10 @@ router.get('/myStocks', (req, res) => {
         results = res;
     })
         .then(function () {
-            // console.log('results ' + results)
+            console.log('results ' + results)
             res.send(results)
         })
+        .catch(err => { console.log(`error ${err}`) })
 })
 
 router.delete(`/delete/:id`, (req, res) => {

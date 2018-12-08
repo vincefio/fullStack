@@ -14,26 +14,11 @@ class MyStocks extends Component {
     }
 
     componentDidMount() {
+        console.log(`component did mount`)
         this.props.getMyStocks()
     }
 
     onDeleteClick(id) {
-        //console.log(`delete ${id}`)
-        /*var self = this
-        axios.delete(`/delete/${id}`)
-            .then(function (response) {
-                console.log(response);
-
-                let newStockResults = self.state.mystocks
-                    .filter(stock => stock._id !== id)
-
-                self.setState({
-                    mystocks: newStockResults
-                })
-            })
-            .catch(function (error) {
-                console.log(error);
-            });*/
         this.props.deleteStock(id)
     }
 

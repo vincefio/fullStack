@@ -18,16 +18,16 @@ export default class Nav extends Component {
                             <li className="hide-on-med-and-down"><a href="/">Home</a></li>
                             <li className="hide-on-med-and-down"><a href="/stocks">My Stocks</a></li>
                             <li className="hide-on-med-and-down"><a href="/chart">Chart</a></li>
-                            <li><a className="dropdown-trigger hide-on-large-only" href="#!" data-target="dropdown1">Dropdown<i className="material-icons right">dehaze</i></a></li>
+                            <li><a className="dropdown-trigger hide-on-large-only" href="#!" data-target="dropdown1"><i className="material-icons right">dehaze</i></a></li>
 
 
                         </ul>
 
                         <ul id="dropdown1" className="dropdown-content">
-                            <li><a href="#!">one</a></li>
-                            <li><a href="#!">two</a></li>
-                            <li className="divider"></li>
-                            <li><a href="#!">three</a></li>
+
+                            <li className=""><a href="/">Home</a></li>
+                            <li className=""><a href="/stocks">My Stocks</a></li>
+                            <li className=""><a href="/chart">Chart</a></li>
                         </ul>
 
                     </div>
