@@ -1,30 +1,20 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { connect } from 'react-redux'
+import { getMyStocks } from '../actions/displayAction'
 
-export default class MyStocks extends Component {
-    constructor() {
-        super()
-        this.state = {
+class MyStocks extends Component {
+    constructor(props) {
+        super(props)
+        /*this.state = {
             mystocks: []
-        }
+        }*/
 
         this.onDeleteClick = this.onDeleteClick.bind(this)
     }
 
     componentDidMount() {
-        var self = this
-
-        axios.get('/myStocks')
-            .then(function (response) {
-                //console.log(response);
-
-                self.setState({
-                    mystocks: response.data
-                })
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        this.props.getMyStocks()
     }
 
     onDeleteClick(id) {
@@ -47,16 +37,34 @@ export default class MyStocks extends Component {
     }
 
     render() {
-        var stockList = this.state.mystocks.map((stock) => {
+        console.log(`render ${JSON.stringify(this.props.myStocks)}`)
+        if (this.props.myStocks.length > 0) {
+            console.log(`if statement ${JSON.stringify(this.props.myStocks)}`)
+            var stockList = this.props.myStocks.map((stock) => {
 
-            return (
-                <div className='projectDiv valign-wrapper' key={stock._id}>
-                    <div className="projectListTitle">{stock.name}</div>
-                    <a className="btn project-delete right red" onClick={this.onDeleteClick.bind(this, stock._id)}><i className="material-icons">clear</i></a>
+                return (
+                    <div className='projectDiv valign-wrapper' key={stock._id}>
+                        <div className="projectListTitle">{stock.name}</div>
+                        <a className="btn project-delete right red" onClick={this.onDeleteClick.bind(this, stock._id)}><i className="material-icons">clear</i></a>
 
-                </div>
-            )
-        })
+                    </div>
+                )
+            })
+        }
+        /* if (this.props.myStocks.myStocks !== 'undefined') {
+             console.log(`if statement ${JSON.stringify(this.props.myStocks.myStocks)}`)
+             var stockList = this.props.mystocks.myStocks.map((stock) => {
+ 
+                 return (
+                     <div className='projectDiv valign-wrapper' key={stock._id}>
+                         <div className="projectListTitle">{stock.name}</div>
+                         <a className="btn project-delete right red" onClick={this.onDeleteClick.bind(this, stock._id)}><i className="material-icons">clear</i></a>
+ 
+                     </div>
+                 )
+             })
+         }*/
+
         return (
             <div className="container">
                 <h1>my stocks</h1>
@@ -66,3 +74,11 @@ export default class MyStocks extends Component {
         )
     }
 }
+
+const mapStateToProps = state => ({
+    //take state, and send it into component as 'props'
+    myStocks: state.myStocks.myStocks
+
+})
+
+export default connect(mapStateToProps, { getMyStocks })(MyStocks)

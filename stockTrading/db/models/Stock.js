@@ -8,8 +8,8 @@ var stockSchema = new Schema({
 
 //create model
 var Stock = mongoose.model('Stock', stockSchema);
-Stock.remove({}, function (err) {
+/*Stock.remove({}, function (err) {
     console.log('collection removed')
-})
+})*/
 
 module.exports = Stock

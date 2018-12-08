@@ -18,7 +18,7 @@ export const getMyStocks = () => dispatch => {
 
     axios.get('/myStocks')
         .then(function (response) {
-            console.log('my stocks ' + response)
+            console.log('my stocks ' + JSON.stringify(response.data))
 
             //dispatch response
             dispatch({

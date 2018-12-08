@@ -5,7 +5,7 @@ const initialState = {
 export default function (state = initialState, action) {
     switch (action.type) {
         case "FETCH_MY_STOCKS":
-            console.log('reducer fetch')
+            console.log('display reducer fetch')
             return {
                 ...state,
                 myStocks: action.payload
