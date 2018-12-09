@@ -1,6 +1,7 @@
 
 //import { FETCH_STOCKS, NEW_POST } from './types';
 import axios from 'axios'
+import store from '../store.js'
 
 export const fetchStocks = () => dispatch => {
     console.log('fetch posts')
@@ -30,6 +31,7 @@ export const fetchStocks = () => dispatch => {
 
 export const addStock = (symbol, id) => dispatch => {
     console.log('add stock')
+    console.log(store.getState())
     //add stock to database, limit this to 5
     axios.post('/newStock', {
         name: symbol,

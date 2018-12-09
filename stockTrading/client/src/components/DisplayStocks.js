@@ -40,7 +40,7 @@ class DisplayStocks extends Component {
         return (
             <div className="container">
                 <h2>50 Random Stocks</h2>
-                <p className="instructionText">Some stocks to help you get started. Click the stock to add to your cart</p>
+                <p className="instructionText">Add up to 5 stocks to get started. Click the stock to add to your cart</p>
                 <div className='randomDisplay'>
 
                     {stockItems}
