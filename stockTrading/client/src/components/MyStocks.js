@@ -15,7 +15,10 @@ class MyStocks extends Component {
 
     componentDidMount() {
         console.log(`component did mount`)
-        this.props.getMyStocks()
+        console.log(this.props.thoseStocks)
+        console.log(this.props.myStocks)
+        console.log(this.props.stocks)
+        //this.props.getMyStocks()
     }
 
     onDeleteClick(id) {
@@ -50,8 +53,9 @@ class MyStocks extends Component {
 
 const mapStateToProps = state => ({
     //take state, and send it into component as 'props'
-    myStocks: state.myStocks.myStocks
-
+    myStocks: state.myStocks.myStocks,
+    thoseStocks: state.stocks.myStocks,
+    stocks: state.stocks.stocks
 })
 
 export default connect(mapStateToProps, { getMyStocks, deleteStock })(MyStocks)

@@ -18,9 +18,14 @@ class DisplayStocks extends Component {
 
     handleClick(symbol, id, event) {
         event.preventDefault()
-        console.log(`clicked ${symbol}`)
+        //console.log(`clicked ${symbol}`)
+        console.log(`my stocks ${this.props.myStocks}`)
+        if (this.props.myStocks.length > 4) {
+            alert('you are only allowed 5 stocks')
+        } else {
+            this.props.addStock(symbol, id)
+        }
 
-        this.props.addStock(symbol, id)
 
     }
 
