@@ -53,8 +53,8 @@ class DisplayStocks extends Component {
 }
 
 const mapStateToProps = state => ({
-    stocks: state.stocks.stocks
-
+    stocks: state.stocks.stocks,
+    myStocks: state.stocks.myStocks
 })
 
 export default connect(mapStateToProps, { fetchStocks, addStock })(DisplayStocks)
