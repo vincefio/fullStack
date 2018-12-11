@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import { getMyStocks, deleteStock } from '../actions/displayAction'
+import { deleteStock } from '../actions/displayAction'
+import store from '../store.js'
+import { fetchStocks, addStock, getMyStocks } from '../actions/postActions'
 
 class MyStocks extends Component {
     constructor(props) {
@@ -17,7 +19,8 @@ class MyStocks extends Component {
         console.log(`component did mount`)
         console.log(this.props.thoseStocks)
         console.log(this.props.myStocks)
-        console.log(this.props.stocks)
+        console.log(store.getState())
+        this.props.getMyStocks()
         //this.props.getMyStocks()
     }
 
@@ -58,4 +61,4 @@ const mapStateToProps = state => ({
     stocks: state.stocks.stocks
 })
 
-export default connect(mapStateToProps, { getMyStocks, deleteStock })(MyStocks)
+export default connect(mapStateToProps, { deleteStock, getMyStocks })(MyStocks)

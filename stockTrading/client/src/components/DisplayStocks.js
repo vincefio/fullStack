@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import { fetchStocks, addStock } from '../actions/postActions'
+import { fetchStocks, addStock, getMyStocks } from '../actions/postActions'
+import store from '../store.js'
 
 
 class DisplayStocks extends Component {
@@ -14,6 +15,8 @@ class DisplayStocks extends Component {
     //display 50 random stocks
     componentWillMount() {
         this.props.fetchStocks()
+        this.props.getMyStocks()
+        console.log(store.getState())
     }
 
     handleClick(symbol, id, event) {
@@ -62,4 +65,4 @@ const mapStateToProps = state => ({
     myStocks: state.stocks.myStocks
 })
 
-export default connect(mapStateToProps, { fetchStocks, addStock })(DisplayStocks)
+export default connect(mapStateToProps, { fetchStocks, addStock, getMyStocks })(DisplayStocks)

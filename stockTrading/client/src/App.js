@@ -11,16 +11,13 @@ import store from './store'
 
 
 class App extends Component {
+
   render() {
     return (
       <Provider store={store}>
         <Router>
           <div className="App">
-            <Nav />
-
-            <Route exact path="/" component={Home} />
-            <Route exact path="/stocks" component={MyStocks} />
-            <Route exact path="/chart" component={StockChart} />
+            <Home />
 
           </div>
         </Router>

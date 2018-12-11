@@ -21,7 +21,12 @@ export default function (state = initialState, action) {
                 myStocks: [...state.myStocks, action.payload]
             }
         // case "ADD_STOCK_ERROR":
-
+        case "GET_MY_STOCKS":
+            console.log('GET_MY_STOCKS reducer')
+            return {
+                ...state,
+                myStocks: action.payload
+            }
         default:
             return state;
     }
