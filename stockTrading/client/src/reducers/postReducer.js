@@ -27,6 +27,18 @@ export default function (state = initialState, action) {
                 ...state,
                 myStocks: action.payload
             }
+
+
+        case "DELETE_STOCK":
+            console.log('DELETE_STOCK reducer')
+            let payload = action.payload
+            let newStockResults = state.myStocks.filter(
+                stock => stock._id !== payload
+            )
+            return {
+                ...state,
+                myStocks: newStockResults
+            }
         default:
             return state;
     }

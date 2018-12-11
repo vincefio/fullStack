@@ -41,7 +41,7 @@ export const addStock = (symbol, id) => dispatch => {
             console.log(response);
             dispatch({
                 type: "ADD_STOCK",
-                payload: symbol
+                payload: { "name": symbol }
             })
             alert('stock added')
         })

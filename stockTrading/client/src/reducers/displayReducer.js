@@ -9,7 +9,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 myStocks: action.payload
-            }*/
+            }
         case "DELETE_STOCK":
             console.log('DELETE_STOCK reducer')
             let payload = action.payload
@@ -19,7 +19,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 myStocks: newStockResults
-            }
+            }*/
         default:
             return state;
     }
