@@ -3,7 +3,6 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import { fetchStocks, addStock, getMyStocks } from '../actions/postActions'
 import store from '../store.js'
-import Test from './Test.js'
 
 
 class DisplayStocks extends Component {

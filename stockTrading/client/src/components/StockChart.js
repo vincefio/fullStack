@@ -3,10 +3,14 @@ import AnyChart from 'anychart-react'
 import anychart from 'anychart'
 import { connect } from 'react-redux'
 import { fetchStocks } from '../actions/postActions'
+import { getStocks, getStockData } from '../actions/displayActions'
+import store from '../store.js'
 
 class StockChart extends Component {
     componentWillMount() {
-        this.props.fetchStocks()
+        //need to make get requests for the stocks in portfolio
+        this.props.getStocks()
+        this.props.getStockData()
     }
 
     render() {
@@ -112,4 +116,10 @@ class StockChart extends Component {
     }
 }
 
-export default connect(null, { fetchStocks })(StockChart)
+const mapStateToProps = state => ({
+    //take state, and send it into component as 'props'
+    stocks: state.stocks.stocks,
+    myStocks: state.stocks.myStocks
+})
+
+export default connect(mapStateToProps, { getStocks, getStockData })(StockChart)

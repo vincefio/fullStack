@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+/*import React, { Component } from 'react'
 
 export default class AddStock extends Component {
     constructor() {
@@ -39,4 +39,4 @@ export default class AddStock extends Component {
 
         )
     }
-}
+}*/

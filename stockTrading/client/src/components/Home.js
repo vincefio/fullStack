@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import DisplayStocks from './DisplayStocks'
-import AddStock from './AddStock'
 import Nav from './Nav'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import MyStocks from './MyStocks'

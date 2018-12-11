@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import { deleteStock } from '../actions/displayAction'
+//import { getStockData } from '../actions/displayActions'
 import store from '../store.js'
-import { fetchStocks, addStock, getMyStocks } from '../actions/postActions'
+import { fetchStocks, addStock, getMyStocks, deleteStock } from '../actions/postActions'
 
 class MyStocks extends Component {
     constructor(props) {
@@ -60,9 +60,6 @@ class MyStocks extends Component {
 
 const mapStateToProps = state => ({
     //take state, and send it into component as 'props'
-    /* myStocks: state.myStocks.myStocks,
-     thoseStocks: state.stocks.myStocks,
-     stocks: state.stocks.stocks*/
     stocks: state.stocks.stocks,
     myStocks: state.stocks.myStocks
 })

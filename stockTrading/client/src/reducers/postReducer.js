@@ -1,4 +1,3 @@
-import { FETCH_STOCKS, NEW_POST } from '../actions/types';
 
 const initialState = {
     stocks: [],
@@ -27,8 +26,6 @@ export default function (state = initialState, action) {
                 ...state,
                 myStocks: action.payload
             }
-
-
         case "DELETE_STOCK":
             console.log('DELETE_STOCK reducer')
             let payload = action.payload
