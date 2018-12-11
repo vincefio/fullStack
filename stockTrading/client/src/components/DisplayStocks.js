@@ -16,7 +16,7 @@ class DisplayStocks extends Component {
     componentWillMount() {
         this.props.fetchStocks()
         this.props.getMyStocks()
-        console.log(store.getState())
+        //console.log(store.getState())
     }
 
     handleClick(symbol, id, event) {

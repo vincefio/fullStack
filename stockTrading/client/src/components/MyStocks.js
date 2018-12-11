@@ -56,9 +56,11 @@ class MyStocks extends Component {
 
 const mapStateToProps = state => ({
     //take state, and send it into component as 'props'
-    myStocks: state.myStocks.myStocks,
-    thoseStocks: state.stocks.myStocks,
-    stocks: state.stocks.stocks
+    /* myStocks: state.myStocks.myStocks,
+     thoseStocks: state.stocks.myStocks,
+     stocks: state.stocks.stocks*/
+    stocks: state.stocks.stocks,
+    myStocks: state.stocks.myStocks
 })
 
 export default connect(mapStateToProps, { deleteStock, getMyStocks })(MyStocks)
