@@ -4,5 +4,5 @@ import displayReducer from './displayReducer';
 
 export default combineReducers({
     stocks: postReducer,
-    myStocks: displayReducer
+    // myStocks: displayReducer
 });

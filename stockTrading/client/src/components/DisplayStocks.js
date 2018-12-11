@@ -15,8 +15,16 @@ class DisplayStocks extends Component {
 
     //display 50 random stocks
     componentWillMount() {
-        this.props.fetchStocks()
-        this.props.getMyStocks()
+        //only fetch stocks if this.props.stocks.length === 0
+        if (this.props.stocks.length === 0) {
+            this.props.fetchStocks()
+        }
+
+        //only run getMyStocks if this.props.myStocks.length === 0
+        if (this.props.myStocks.length === 0) {
+            this.props.getMyStocks()
+        }
+
         //console.log(store.getState())
     }
 
@@ -52,6 +60,7 @@ class DisplayStocks extends Component {
 
                 <h2>50 Random Stocks</h2>
                 <p className="instructionText">Add up to 5 stocks to get started. Click the stock to add to your cart</p>
+                <p className="instructionText">You currently have {this.props.myStocks.length} stocks in your portfolio</p>
                 <div className='randomDisplay'>
 
                     {stockItems}
