@@ -3,6 +3,7 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import { fetchStocks, addStock, getMyStocks } from '../actions/postActions'
 import store from '../store.js'
+import Test from './Test.js'
 
 
 class DisplayStocks extends Component {
@@ -46,7 +47,9 @@ class DisplayStocks extends Component {
         // console.log('render ' + JSON.stringify(this.props))
 
         return (
+
             <div className="container">
+
                 <h2>50 Random Stocks</h2>
                 <p className="instructionText">Add up to 5 stocks to get started. Click the stock to add to your cart</p>
                 <div className='randomDisplay'>

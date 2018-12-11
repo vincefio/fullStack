@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import M from 'materialize-css'
+import { Link } from 'react-router-dom'
 
 export default class Nav extends Component {
     componentDidMount() {
@@ -15,9 +16,9 @@ export default class Nav extends Component {
                         <a className="logo">Stock Tip</a>
                         <ul id="nav-mobile" className="right ">
 
-                            <li className="hide-on-med-and-down"><a href="/">Home</a></li>
-                            <li className="hide-on-med-and-down"><a href="/stocks">My Stocks</a></li>
-                            <li className="hide-on-med-and-down"><a href="/chart">Chart</a></li>
+                            <li className="hide-on-med-and-down"><Link to="/">Home</Link></li>
+                            <li className="hide-on-med-and-down"><Link to="/stocks">My Stocks</Link></li>
+                            <li className="hide-on-med-and-down"><Link to="/chart">Chart</Link></li>
                             <li><a className="dropdown-trigger hide-on-large-only" href="#!" data-target="dropdown1"><i className="material-icons right">dehaze</i></a></li>
 
 
@@ -25,9 +26,9 @@ export default class Nav extends Component {
 
                         <ul id="dropdown1" className="dropdown-content">
 
-                            <li className=""><a href="/">Home</a></li>
-                            <li className=""><a href="/stocks">My Stocks</a></li>
-                            <li className=""><a href="/chart">Chart</a></li>
+                            <li className=""><Link to="/">Home</Link></li>
+                            <li className=""><Link to="/stocks">My Stocks</Link></li>
+                            <li className=""><Link to="/chart">Chart</Link></li>
                         </ul>
 
                     </div>

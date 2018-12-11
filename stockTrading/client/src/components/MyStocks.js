@@ -16,22 +16,26 @@ class MyStocks extends Component {
     }
 
     componentDidMount() {
-        console.log(`component did mount`)
-        console.log(this.props.thoseStocks)
-        console.log(this.props.myStocks)
-        console.log(store.getState())
-        this.props.getMyStocks()
+        console.log(`mystocks component did mount ${JSON.stringify(this.props.myStocks)}`)
+        // console.log(this.props.thoseStocks)
+        //console.log(this.props.myStocks)
+        //console.log('mystoskc sstate ' + JSON.stringify(store.getState()))
+        //this.props.getMyStocks()
+
+        //loop through the component state
+        //console.log('')
         //this.props.getMyStocks()
     }
 
     onDeleteClick(id) {
+        //console.log(store.getState())
         this.props.deleteStock(id)
     }
 
     render() {
-        console.log(`render ${JSON.stringify(this.props.myStocks)}`)
+        // console.log(`render ${JSON.stringify(this.props.myStocks)}`)
         if (this.props.myStocks.length > 0) {
-            console.log(`if statement ${JSON.stringify(this.props.myStocks)}`)
+            //console.log(`if statement ${JSON.stringify(this.props.myStocks)}`)
             var stockList = this.props.myStocks.map((stock) => {
 
                 return (
