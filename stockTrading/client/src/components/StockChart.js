@@ -13,7 +13,13 @@ class StockChart extends Component {
         this.props.getStockData()
     }
 
+    componentDidMount() {
+        //console.log(store.getState())
+    }
+
     render() {
+        //loop through the state and add data for each response object
+
         var table, mapping, chart;
         table = anychart.data.table();
         table.addData([

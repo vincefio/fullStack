@@ -13,6 +13,7 @@ export const getStocks = () => dispatch => {
 export const getStockData = () => dispatch => {
     var stocksToGraph = store.getState().stocks.myStocks
     var num = -1
+    var name
     console.log(`get stock data ${JSON.stringify(stocksToGraph)}`)
     //console.log(`get stock data ${stocksToGraph[1].name}`)
     for (var i = 0; i < stocksToGraph.length; i++) {
@@ -21,17 +22,16 @@ export const getStockData = () => dispatch => {
             .then((response) => {
                 //console.log(response);
 
-                //console.log(randArr)
-                //console.log(JSON.stringify(stocksToGraph[i]))
-                //var name = store.getState().stocks.myStocks[i].name
                 num++
-                console.log(store.getState().stocks.myStocks[num])
-                console.log(num)
+
+                //console.log(num)
+                name = store.getState().stocks.myStocks[num].name
+                //console.log(name)
 
                 dispatch({
                     type: "HANDLE_DATA",
-                    // payload: { name: response }
-                    payload: response
+                    payload: { name: name, data: response }
+                    // payload: response
                 })
 
             })
