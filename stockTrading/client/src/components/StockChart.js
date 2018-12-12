@@ -3,18 +3,15 @@ import AnyChart from 'anychart-react'
 import anychart from 'anychart'
 import { connect } from 'react-redux'
 import { fetchStocks } from '../actions/postActions'
-import { getStocks, getStockData } from '../actions/displayActions'
+import { getStocks, getStockData, arrangeChartData } from '../actions/displayActions'
 import store from '../store.js'
 
 class StockChart extends Component {
     componentWillMount() {
         //need to make get requests for the stocks in portfolio
         this.props.getStocks()
-        this.props.getStockData()
-    }
-
-    componentDidMount() {
-        //console.log(store.getState())
+        this.props.getStockData(this.props.arrangeChartData)
+        //this.props.arrangeChartData()
     }
 
     render() {
@@ -22,6 +19,7 @@ class StockChart extends Component {
 
         var table, mapping, chart;
         table = anychart.data.table();
+        //put state data into an array of arrays
         table.addData([
             ['2015-12-24', 511.53, 514.98, 505.79, 506.40],
             ['2015-12-25', 512.53, 514.88, 505.69, 507.34],
@@ -128,4 +126,4 @@ const mapStateToProps = state => ({
     myStocks: state.stocks.myStocks
 })
 
-export default connect(mapStateToProps, { getStocks, getStockData })(StockChart)
+export default connect(mapStateToProps, { getStocks, getStockData, arrangeChartData })(StockChart)

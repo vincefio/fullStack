@@ -10,7 +10,7 @@ export const getStocks = () => dispatch => {
     })
 }
 
-export const getStockData = () => dispatch => {
+export const getStockData = (callback) => dispatch => {
     var stocksToGraph = store.getState().stocks.myStocks
     var num = -1
     var name
@@ -35,9 +35,55 @@ export const getStockData = () => dispatch => {
                 })
 
             })
+            .then(() => {
+                //console.log('dot thens all day!')
+                callback()
+            })
 
             .catch(function (error) {
                 console.log(error);
             });
     }
+}
+
+export const arrangeChartData = () => dispatch => {
+    console.log('arrange chart data action')
+    //double for loop
+    //first loop through store.getState().chartData.stocks
+    //loop through store.getState().chartData.stockData.data.data and dispatch as you go
+    var chosenStocks = store.getState().chartData.stockData
+
+    var dataTable = []
+    var tableRow = []
+    console.log(chosenStocks[0])
+    //console.log(chosenStocks.chartData.stockData[0])
+
+    for (var i = 0; i < store.getState().chartData.stocks.length; i++) {
+        console.log('hit')
+        console.log(store.getState().chartData)
+        for (var j = 0; j < store.getState().chartData.stockData[i].data.data.length; j++) {
+            tableRow = []
+            tableRow.push(chosenStocks[i].data.data[j].date)
+            tableRow.push(chosenStocks[i].data.data[j].open)
+            tableRow.push(chosenStocks[i].data.data[j].high)
+            tableRow.push(chosenStocks[i].data.data[j].low)
+            tableRow.push(chosenStocks[i].data.data[j].close)
+            dataTable.push(tableRow)
+        }
+
+        if (i == chosenStocks.length - 1) {
+            console.log('shits equal')
+            dispatch({
+                type: "CREATE_TABLE_DATA",
+                payload: dataTable
+            })
+        }
+
+    }
+
+    //console.log(dataTable)
+    /*dispatch({
+        type: "CREATE_TABLE_DATA",
+        payload: dataTable
+    })*/
 }

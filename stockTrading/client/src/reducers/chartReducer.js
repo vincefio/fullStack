@@ -1,6 +1,7 @@
 const initialState = {
     stocks: [],
-    stockData: []
+    stockData: [],
+    dataForTable: []
 };
 
 export default function (state = initialState, action) {
@@ -16,6 +17,12 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 stockData: [...state.stockData, action.payload]
+            }
+        case "CREATE_TABLE_DATA":
+            console.log('create table data reducer')
+            return {
+                ...state,
+                dataForTable: action.payload
             }
         default:
             return state;
