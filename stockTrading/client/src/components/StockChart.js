@@ -16,84 +16,60 @@ class StockChart extends Component {
     }
 
     componentDidMount() {
-        console.log('did mount ' + JSON.stringify(store.getState()))
+        //console.log('did mount ' + JSON.stringify(store.getState()))
     }
 
     render() {
         //loop through the state and add data for each response object
+        // console.log(store.getState().chartData.stocks.length)
 
-        var table, table2, mapping, chart;
+
+        var table, table2, table3, mapping, chart;
         table = anychart.data.table();
         //put state data into an array of 
-        if (store.getState().chartData.dataForTable.length > 0) {
-            // alert(store.getState().chartData.dataForTable[0])
 
 
-        }
+
 
         setTimeout(() => {
-            console.log('set timeout ' + JSON.stringify(store.getState))
-            table.addData(
+            // console.log('set timeout ' + JSON.stringify(store.getState()))
+            /*table.addData(
                 store.getState().chartData.dataForTable[0]
-            );
+            );*/
+            for (var i = 0; i < store.getState().chartData.stocks.length; i++) {
+                table3 = anychart.data.table()
+
+                table3.addData(
+                    store.getState().chartData.dataForTable[i]
+                )
+
+
+
+                //chart.plot(0).ohlc(mapping).name(store.getState().chartData.stocks[i].name);
+                //var series = chart.plot(0).ohlc(mapping);
+                //series.name(store.getState().chartData.stocks[i].name);
+                // create plot on the chart
+                var plot = chart.plot(0);//.ohlc(mapping)//.name(store.getState().chartData.stocks[i].name);
+                plot.yScale().comparisonMode('none');
+                plot.yAxis().labels().format('{%Value}%');
+                plot.yGrid(true)
+                    .yMinorGrid(true);
+
+                plot.line(table3.mapAs({
+                    'value': 4
+                })).name(store.getState().chartData.stocks[i].name);
+                // plot.name('yo')
+            }
         }, 1000)
-
-
-        table2 = anychart.data.table()
-        setTimeout(() => {
-            console.log('set timeout ' + JSON.stringify(store.getState))
-            table2.addData(
-                store.getState().chartData.dataForTable[1]
-            );
-        }, 1200)
-
-        /* var orclDataTable = anychart.data.table();
-         orclDataTable.addData(window.get_orcl_daily_short_data());
-         var cscoDataTable = anychart.data.table();
-         cscoDataTable.addData(window.get_csco_daily_short_data());
-         var ibmDataTable = anychart.data.table();
-         ibmDataTable.addData(window.get_ibm_daily_short_data());*/
-        // mapping the data  
-        /*mapping = table.mapAs();
-        mapping.addField('open', 1, 'first');
-        mapping.addField('high', 2, 'max');
-        mapping.addField('low', 3, 'min');
-        mapping.addField('close', 4, 'last');
-        mapping.addField('value', 4, 'last');*/
 
 
         // defining the chart type
         chart = anychart.stock();
         chart.crosshair().displayMode("float");
 
-        // create plot on the chart
-        var plot = chart.plot(0);
-        plot.yScale().comparisonMode('percent');
-        plot.yAxis().labels().format('{%Value}%');
-        plot.yGrid(true)
-            .yMinorGrid(true);
 
-        //chart = anychart.stock();
-        //var firstPlot = chart.plot(0);
-        //firstPlot.area(table.mapAs({ 'value': 4 })).name('MSFT');
 
-        // chart.plot(0).line(mapping);
-        plot.line(table.mapAs({
-            'value': 4
-        }))
 
-        plot.line(table2.mapAs({
-            'value': 4
-        }))
-
-        /*var secondPlot = chart.plot(1);
-        secondPlot.splineArea(orclDataTable.mapAs({ 'value': 4 })).fill('#1976d2 0.65').stroke('1.5 #1976d2').name('ORCL');
-        var thirdPlot = chart.plot(2);
-        thirdPlot.stepArea(cscoDataTable.mapAs({ 'value': 4 })).fill('#ef6c00 0.65').stroke('1.5 #ef6c00').name('CSCO');
-        var forthPlot = chart.plot(3);
-        forthPlot.line(msftDataTable.mapAs({ 'value': 4 })).name('MSFT').tooltip(null);
-        forthPlot.spline(orclDataTable.mapAs({ 'value': 4 })).name('ORCL').tooltip(null);
-        forthPlot.stepLine(cscoDataTable.mapAs({ 'value': 4 })).name('CSCO').tooltip(null);*/
         chart.scroller().area(table.mapAs({ 'value': 4 }));
         //chart.selectRange('2005-01-03', '2005-11-20');
 
