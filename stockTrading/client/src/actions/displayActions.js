@@ -60,6 +60,7 @@ export const arrangeChartData = () => dispatch => {
 
     for (var i = 0; i < store.getState().chartData.stocks.length; i++) {
         console.log('hit')
+        dataTable = []
         console.log(store.getState().chartData)
         for (var j = 0; j < store.getState().chartData.stockData[i].data.data.length; j++) {
             tableRow = []
@@ -70,6 +71,10 @@ export const arrangeChartData = () => dispatch => {
             tableRow.push(chosenStocks[i].data.data[j].close)
             dataTable.push(tableRow)
         }
+
+        //return the data table
+        //do a dispatch?
+
 
         if (i == chosenStocks.length - 1) {
             console.log('shits equal')

@@ -22,7 +22,7 @@ export default function (state = initialState, action) {
             console.log('create table data reducer')
             return {
                 ...state,
-                dataForTable: action.payload
+                dataForTable: [...state.dataForTable, action.payload]
             }
         default:
             return state;
