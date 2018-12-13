@@ -22,7 +22,7 @@ class StockChart extends Component {
     render() {
         //loop through the state and add data for each response object
 
-        var table, mapping, chart;
+        var table, table2, mapping, chart;
         table = anychart.data.table();
         //put state data into an array of 
         if (store.getState().chartData.dataForTable.length > 0) {
@@ -32,27 +32,21 @@ class StockChart extends Component {
         }
 
         setTimeout(() => {
-            console.log('set timeout ' + JSON.stringify(store.getState()))
+            console.log('set timeout ' + JSON.stringify(store.getState))
             table.addData(
                 store.getState().chartData.dataForTable[0]
             );
-        }, 2000)
+        }, 1000)
 
 
-        var table2 = anychart.data.table()
-        table2.addData(
-            [
-                ['2014-12-24', 511.53, 514.98, 505.79, 506.40],
-                ['2014-12-25', 512.53, 514.88, 505.69, 507.34],
-                ['2014-12-26', 511.83, 514.98, 505.59, 506.23],
-                ['2014-12-27', 511.22, 515.30, 505.49, 506.47],
-                ['2014-12-28', 510.35, 515.72, 505.23, 505.80],
-                ['2014-12-29', 510.53, 515.86, 505.38, 508.25],
-                ['2014-12-30', 511.43, 515.98, 505.66, 507.45],
-                ['2014-12-31', 511.50, 515.33, 505.99, 507.98],
-                ['2014-01-01', 511.32, 514.29, 505.99, 506.37]
-            ]
-        );
+        table2 = anychart.data.table()
+        setTimeout(() => {
+            console.log('set timeout ' + JSON.stringify(store.getState))
+            table2.addData(
+                store.getState().chartData.dataForTable[1]
+            );
+        }, 1200)
+
         /* var orclDataTable = anychart.data.table();
          orclDataTable.addData(window.get_orcl_daily_short_data());
          var cscoDataTable = anychart.data.table();
