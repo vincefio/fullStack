@@ -12,7 +12,7 @@
   "dependencies": {
     "anychart-react": "^1.4.1",
     "body-parser": "^1.18.3",
-    "concurrently": "^4.0.1",
+    "concurrently": "^4.1.0",
     "express": "^4.16.4",
     "mongoose": "^5.3.12"
   }
