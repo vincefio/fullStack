@@ -8,17 +8,8 @@ import { fetchStocks, addStock, getMyStocks, deleteStock } from '../actions/post
 class MyStocks extends Component {
     constructor(props) {
         super(props)
-        /*this.state = {
-            mystocks: []
-        }*/
 
         this.onDeleteClick = this.onDeleteClick.bind(this)
-    }
-
-    componentDidMount() {
-        console.log(`mystocks component did mount ${JSON.stringify(this.props.myStocks)}`)
-        //loop through the component state
-
     }
 
     onDeleteClick(id) {

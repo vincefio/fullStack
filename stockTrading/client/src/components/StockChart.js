@@ -15,9 +15,6 @@ class StockChart extends Component {
         //create another function w promise or callback
     }
 
-    componentDidMount() {
-        //console.log('did mount ' + JSON.stringify(store.getState()))
-    }
 
     render() {
         //loop through the state and add data for each response object
@@ -28,14 +25,8 @@ class StockChart extends Component {
         table = anychart.data.table();
         //put state data into an array of 
 
-
-
-
         setTimeout(() => {
             // console.log('set timeout ' + JSON.stringify(store.getState()))
-            /*table.addData(
-                store.getState().chartData.dataForTable[0]
-            );*/
             for (var i = 0; i < store.getState().chartData.stocks.length; i++) {
                 table3 = anychart.data.table()
 
